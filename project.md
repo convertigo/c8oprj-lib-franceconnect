@@ -60,10 +60,10 @@ This as to be called by client apps to decide whenever or not they have to displ
 
 </p></blockquote></details>
 
-<details><summary><b>GetConfiguration</b> : Returns to the client the public OAuth credentials</summary><blockquote><p>
+<details><summary><b>getConfiguration</b> : Returns to the client the public OAuth credentials</summary><blockquote><p>
 
 
-## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/sequences/images/genericsequence_color_16x16.png?raw=true "GenericSequence") GetConfiguration
+## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/sequences/images/genericsequence_color_16x16.png?raw=true "GenericSequence") getConfiguration
 
 Returns to the client the public OAuth credentials
 </p></blockquote></details>
