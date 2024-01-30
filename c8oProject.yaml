@@ -1,9 +1,7 @@
 ↑convertigo: 8.1.0.m006
 ↓lib_FranceConnect [core.Project]: 
   comment: |
-    '# lib_FranceConnect
-    
-    This library enables **FranceConnect** Single Sign on on a Convertigo Application. 
+    'This library enables **FranceConnect** Single Sign on on a Convertigo Application. 
     
     # Usage
     

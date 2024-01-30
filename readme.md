@@ -3,8 +3,6 @@
 
 # lib_FranceConnect
 
-# lib_FranceConnect
-
 This library enables **FranceConnect** Single Sign on on a Convertigo Application. 
 
 # Usage
