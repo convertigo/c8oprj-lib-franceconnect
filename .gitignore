@@ -1,0 +1,23 @@
+/_private/
+/.settings
+/.gradle
+/.project
+
+/DisplayObjects/mobile/*
+!/DisplayObjects/mobile/assets
+/DisplayObjects/mobile/assets/css/animate.min.css
+
+# disable this for custom Flashupdate or CI build with Flashupdate
+/Flashupdate
+
+# enable this to share md5 of built files
+# !/Flashupdate/md5.json
+
+# disable this for custom config.xml
+/DisplayObjects/platforms/iOS/config.xml
+/DisplayObjects/platforms/Android/config.xml
+
+/oas2/
+/oas3/
+
+/build/
