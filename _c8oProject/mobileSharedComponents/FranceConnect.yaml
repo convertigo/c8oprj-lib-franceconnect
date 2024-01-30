@@ -1,5 +1,5 @@
+comment: Drop this component in your login page to enable FranceConnect connections
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1706630916018]: 
-  comment: Drop this component on the login page of your app
   ↓CallSequence [ngx.components.UIDynamicAction-1706630931954]: 
     beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_FranceConnect.GetConfiguration"}'
     tagName: CallSequence

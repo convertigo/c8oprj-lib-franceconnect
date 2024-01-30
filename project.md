@@ -148,6 +148,6 @@ My First Page as root page
 
 ### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/uisharedcomponent_16x16.png?raw=true "UISharedRegularComponent") FranceConnect
 
-
+Drop this component in your login page to enable FranceConnect connections
 </p></blockquote></details>
 </p></blockquote></details>

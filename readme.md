@@ -65,5 +65,7 @@ Describes the mobile application global properties
 
 #### FranceConnect
 
+Drop this component in your login page to enable FranceConnect connections
+
 
 
