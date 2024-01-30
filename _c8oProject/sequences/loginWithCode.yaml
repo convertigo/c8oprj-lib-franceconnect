@@ -1,5 +1,5 @@
 comment: |
-  Perform the OAuth flow for Google
+  Perform the OAuth flow with code
   
   If the token is valid, it will be stored in the user's session to be used when calling Microsoft APIs.
   

@@ -68,12 +68,12 @@ This as to be called by client apps to decide whenever or not they have to displ
 Returns to the client the public OAuth credentials
 </p></blockquote></details>
 
-<details><summary><b>loginWithCode</b> : Perform the OAuth flow for Google</summary><blockquote><p>
+<details><summary><b>loginWithCode</b> : Perform the OAuth flow with code</summary><blockquote><p>
 
 
 ## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/sequences/images/genericsequence_color_16x16.png?raw=true "GenericSequence") loginWithCode
 
-Perform the OAuth flow for Google
+Perform the OAuth flow with code
 
 If the token is valid, it will be stored in the user's session to be used when calling Microsoft APIs.
 
