@@ -1,0 +1,7 @@
+comment: Returns to the client the public OAuth credentials
+↓Element113 [steps.XMLElementStep-1706636344206]: 
+  nodeName: OpenIDClientID
+  nodeText: ${lib_franceconnect.clientid=211286433e39cce01db448d80181bdfd005554b19cd51b3fe7943f6b3b86ab6e}
+↓Element114 [steps.XMLElementStep-1706636986803]: 
+  nodeName: AuthorizeEndPoint
+  nodeText: ${lib_franceconnect.authorize=https://app.franceconnect.gouv.fr/api/v1/authorize}

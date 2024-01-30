@@ -60,6 +60,8 @@ title: First page
   beanData: '{"ionBean":"Content"}'
   comment: Page content
   tagName: ion-content
+  ↓tag [ngx.components.UIUseShared-1706630865403]: 
+    sharedcomponent: lib_FranceConnect.Application.NgxApp.FranceConnect
 ↓Footer [ngx.components.UIDynamicElement-1491634242460]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer

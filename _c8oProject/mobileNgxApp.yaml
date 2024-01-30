@@ -64,6 +64,7 @@ componentScriptContent:
         '
 tplProjectName: mobilebuilder_tpl_8_1_0_ngx
 ↓Menu [ngx.components.UIDynamicMenu-1500890597895]: 🗏 mobileMenus/Menu.yaml
+↓FranceConnect [ngx.components.UISharedRegularComponent-1706630840201]: 🗏 mobileSharedComponents/FranceConnect.yaml
 ↓Page [ngx.components.PageComponent-1500538678074]: 🗏 mobilePages/Page.yaml
 ↓Style [ngx.components.UIStyle-1491635462437]: 
   comment: You can add some global application styles here

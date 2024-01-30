@@ -1,0 +1,19 @@
+↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1706630916018]: 
+  comment: Drop this component on the login page of your app
+  ↓CallSequence [ngx.components.UIDynamicAction-1706630931954]: 
+    beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_FranceConnect.GetConfiguration"}'
+    tagName: CallSequence
+    ↓OAuthLogin [ngx.components.UIDynamicAction-1706630972468]: 
+      beanData: |
+        '{
+         "ionBean": "OAuthLoginAction",
+         "provider": "plain:openid",
+         "clientid": "source:{\"filter\":\"Sequence\",\"project\":\"lib_FranceConnect\",\"input\":\"\",\"model\":{\"data\":[{\"sequence\":\"lib_FranceConnect.GetConfiguration\",\"marker\":\"\"}],\"path\":\"?.OpenIDClientID\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}",
+         "scope": "plain:openid email",
+         "response_type": "plain:code",
+         "loginRequestable": "plain:lib_FranceConnect.loginWithCode",
+         "checkAccessTokenRequestable": "plain:lib_FranceConnect.checkAccessOpenID",
+         "authorization_endpoint": "source:{\"filter\":\"Sequence\",\"project\":\"lib_FranceConnect\",\"input\":\"\",\"model\":{\"data\":[{\"sequence\":\"lib_FranceConnect.GetConfiguration\",\"marker\":\"\"}],\"path\":\"?.AuthorizeEndPoint\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}",
+         "callbackurl": "plain:https:\/\/c8ocloud.convertigo.net\/convertigo\/projects\/lib_OAuth\/getTokenGoogle.html"
+        }'
+      tagName: OAuthLogin

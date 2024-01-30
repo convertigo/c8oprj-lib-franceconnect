@@ -1,8 +1,33 @@
 ↑convertigo: 8.1.0.m006
 ↓lib_FranceConnect [core.Project]: 
-  comment: Convertigo NGX builder Project
+  comment: |
+    '# lib_FranceConnect
+    
+    This library enables **FranceConnect** Single Sign on on a Convertigo Application. 
+    
+    # Usage
+    
+    Just drop the **FranceConnect** Shared component in on of the pages of you app. This will automatically perform the FranceConnect OpendID protocol to connect using all the FranceConnect providers.
+    
+    # Symbols
+    
+    This library uses the following symbols :
+    
+    
+    | Symbol                            		| Usage    		| Default Value|
+    | --------------------------------------| ------------- |---------------|
+    | lib_franceconnect.authorize 			| The FranceConnect Authorize Url. Can be https://fcp.integ01.dev-franceconnect.fr/api/v1/authorize for integration environment or https://app.franceconnect.gouv.fr/api/v1/authorize for production		| https://app.franceconnect.gouv.fr/api/v1/authorize  |
+    | lib_franceconnect.clientid   			| The France Connect client id	 | 211286433e39cce01db448d80181bdfd005554b19cd51b3fe7943f6b3b86ab6e |
+    | lib_franceconnect.clientsecret.secret 	| The France Connect client secret	|2791a731e6a59f56b6b4dd0d08c9b1f593b5f3658b9fd731cb24248e2669af4b |
+    
+    '
   corsOrigin: =Origin
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
+  ↓checkAccessOpenID [sequences.GenericSequence]: 🗏 sequences/checkAccessOpenID.yaml
+  ↓GetConfiguration [sequences.GenericSequence]: 🗏 sequences/GetConfiguration.yaml
+  ↓loginWithCode [sequences.GenericSequence]: 🗏 sequences/loginWithCode.yaml
+  ↓lib_OAuth_reference [references.ProjectSchemaReference]: 
+    projectName: lib_OAuth=https://github.com/convertigo/c8oprj-lib-oauth.git:branch=8.0.0
   ↓Project_reference [references.ProjectSchemaReference]: 
     comment: ngx builder template
     projectName: mobilebuilder_tpl_8_1_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_1_0_ngx.zip
