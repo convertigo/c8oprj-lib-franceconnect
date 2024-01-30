@@ -7,7 +7,7 @@ This library enables **FranceConnect** Single Sign on on a Convertigo Applicatio
 
 # Usage
 
-Just drop the **FranceConnect** Shared component in on of the pages of you app. This will automatically perform the FranceConnect OpendID protocol to connect using all the FranceConnect providers.
+Just drop the **FranceConnect** Shared component in one of the pages of you application. This will automatically perform the FranceConnect OpendID protocol to connect using all the FranceConnect providers.
 
 # Symbols
 
