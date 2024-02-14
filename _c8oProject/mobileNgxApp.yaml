@@ -276,6 +276,7 @@ tplProjectName: mobilebuilder_tpl_8_1_0_ngx
           '
 ↓AutoDarkTheme [ngx.components.UIStyle-1662391887098]: 
   comment: This will define the dark theme for the application. This will be selected if the device is in dark mode. You can disable this to disable automatic dark mode switching
+  isEnabled: false
   styleContent: 
     - xmlizable: 
       - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
