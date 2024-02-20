@@ -179,6 +179,15 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                   	            }
                   	        });
                   	    }
+                  	    
+                  	    let randomString = function(length) {
+                  		    var text = "";
+                  		    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                  		    for(var i = 0; i < length; i++) {
+                  		        text += possible.charAt(Math.floor(Math.random() * possible.length));
+                  		    }
+                  		    return text;
+                  		}
                   
                   		try {
                   			page.c8o.log.debug(''[FranceConnect] ''+ props.actionFunction +'': ''+ props.actionName);
@@ -189,8 +198,9 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                                                   ''client_id='' + vars.ClientID +                                             
                                                   ''&response_type=''+ response_type +                                    
                                                   ''&scope='' + scope +
-                                                  ''&state=c8ocsrf'' +
-                                                  ''&nonce='' + Date.now();
+                                                  ''&state='' + randomString(22) +
+                                                  ''&acr_values=eidas1'' +
+                                                  ''&nonce='' + randomString(22);
                                                   
                   			doOAuthLogin(
                   				oAuthUrl,

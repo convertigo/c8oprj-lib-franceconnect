@@ -93,6 +93,48 @@ comment: |
           - SmartType: 
             - ↑mode: JS
             - →→: gid
+    ↓Authorization [steps.XMLConcatStep-1708450313454]: 
+      nodeName: Authorization
+      sourcesDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+              - com.twinsoft.convertigo.beans.common.XMLVector: 
+                - java.lang.String: 
+                  - ↑value: description
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+                  - com.twinsoft.convertigo.beans.common.XMLVector: 
+                - java.lang.String: 
+                  - ↑value: Bearer
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+              - com.twinsoft.convertigo.beans.common.XMLVector: 
+                - java.lang.String: 
+                  - ↑value: description
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+                  - com.twinsoft.convertigo.beans.common.XMLVector: 
+                    - java.lang.String: 
+                      - ↑value: 1708445274254
+                    - java.lang.String: 
+                      - ↑value: ./document/object/access_token/text()
+                - java.lang.String: 
+                  - ↑value: ''
+    ↓Call_Transaction1 [steps.TransactionStep-1708450235390]: 
+      output: true
+      sourceTransaction: lib_FranceConnect.FranceConnect.UserInfo
+      ↓__header_Authorization [variables.StepVariable-1708450293637]: 
+        sourceDefinition: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: 1708450313454
+              - java.lang.String: 
+                - ↑value: ./text()
     ↓jElement [steps.ElementStep-1706637147635]: 
       comment: Still there to support old api (replaced by authUser in new one)
       expression: gid

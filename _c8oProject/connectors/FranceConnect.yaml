@@ -21,3 +21,8 @@ server: ${lib_franceconnect.tokenendpoint=fcp.integ01.dev-franceconnect.fr}
   ↓id_token_hint [variables.RequestableHttpVariable-1708448661255]: 
   ↓state [variables.RequestableHttpVariable-1708448661257]: 
   ↓post_logout_uri [variables.RequestableHttpVariable-1708448661259]: 
+↓UserInfo [transactions.JsonHttpTransaction]: 
+  subDir: api/v1/userinfo
+  ↓schema [variables.RequestableHttpVariable-1708450201719]: 
+    value: openid,email
+  ↓__header_Authorization [variables.RequestableHttpVariable-1708450285603]: 

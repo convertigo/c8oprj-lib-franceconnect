@@ -103,7 +103,7 @@
 	        }
 	        if (parsedResponse["code"] !== undefined &&
 	            parsedResponse["code"] !== null) {
-	        	if (parsedResponse["state"] == "c8ocsrf") {
+	        	if (parsedResponse["state"].length == 22) {
 		        	parsedResponse["access_token"] = "none";
 		        	parsedResponse["redirect_uri"] = url.split("?")[0];
 		        	window.localStorage.setItem("FC-parsedResponse", JSON.stringify(parsedResponse))
