@@ -1,3 +1,4 @@
+comment: Performs logout
 ↓Get_from_session [steps.SessionGetStep-1708448697313]: 
   key: oAuthAccessToken
 ↓Call_Transaction [steps.TransactionStep-1708445879542]: 
