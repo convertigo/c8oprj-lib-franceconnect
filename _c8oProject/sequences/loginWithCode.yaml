@@ -6,56 +6,6 @@ comment: |
   Also if the token is valid, setAuthenticatedUser step is executed to flag this session as authenticated.
   
 ↓Input_variables [steps.InputVariablesStep-1706637147590]: 
-↓Call_Transaction2 [steps.TransactionStep-1706637147593]: 
-  sourceTransaction: lib_OAuth.GoogleOAuth.DiscoveryDocument
-↓Call_Transaction [steps.TransactionStep-1706637147596]: 
-  connectionStringDefinition: 
-    - xmlizable: 
-      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-      - com.twinsoft.convertigo.beans.common.XMLVector: 
-        - java.lang.String: 
-          - ↑value: 1706637147593
-        - java.lang.String: 
-          - ↑value: ./document/object/token_endpoint/text()
-  sourceTransaction: lib_OAuth.GoogleOAuth.GetToken
-  ↓code [variables.StepVariable-1706637147599]: 
-    sourceDefinition: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - java.lang.String: 
-            - ↑value: 1706637147590
-          - java.lang.String: 
-            - ↑value: ./code/text()
-  ↓client_id [variables.StepVariable-1706637147602]: 
-    sourceDefinition: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - java.lang.String: 
-            - ↑value: 1706637147590
-          - java.lang.String: 
-            - ↑value: ./client_id/text()
-  ↓client_secret [variables.StepVariable-1706637147605]: 
-    sourceDefinition: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - java.lang.String: 
-            - ↑value: 1706637147590
-          - java.lang.String: 
-            - ↑value: ./keySecret/text()
-  ↓redirect_uri [variables.StepVariable-1706637147608]: 
-    sourceDefinition: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - java.lang.String: 
-            - ↑value: 1706637147590
-          - java.lang.String: 
-            - ↑value: ./redirect_uri/text()
-  ↓grant_type [variables.StepVariable-1706637147611]: 
-    value: authorization_code
 ↓IfExistThenElse [steps.IfExistThenElseStep-1706637147614]: 
   sourceDefinition: 
     - xmlizable: 
@@ -124,18 +74,6 @@ comment: |
     ↓jElement1 [steps.ElementStep-1706637147638]: 
       expression: gid
       nodeName: authUser
-    ↓Call_Sequence [steps.SequenceStep-1706637147641]: 
-      sourceSequence: lib_OAuth.setLastConnected
-      ↓user [variables.StepVariable-1706637147644]: 
-        comment: The user where we have to set the attribute on
-        sourceDefinition: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: 1706637147638
-              - java.lang.String: 
-                - ↑value: ./text()
   ↓jElse [steps.ElseStep-1706637147647]: 
     ↓Copy [steps.XMLCopyStep-1706637147650]: 
       sourceDefinition: 
@@ -148,8 +86,6 @@ comment: |
               - ↑value: ./document/object
 ↓code [variables.RequestableVariable-1706637147653]: 
 ↓keySecret [variables.RequestableVariable-1706637147656]: 
-  value: ${lib_franceconnect.clientsecret.secret=2791a731e6a59f56b6b4dd0d08c9b1f593b5f3658b9fd731cb24248e2669af4b}
+  value: ${lib_franceconnect.clientsecret.secret=6ceb140618b848e1ec51f55407192f729ac733976c1cc8f5fabaf6393f731422}
 ↓redirect_uri [variables.RequestableVariable-1706637147659]: 
   value: https://www.convertigo.com/authorize
-↓client_id [variables.RequestableVariable-1706637147662]: 
-  value: ${lib_franceconnect.clientid}
