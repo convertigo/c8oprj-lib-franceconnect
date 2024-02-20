@@ -91,9 +91,8 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                   	            page.c8o.callJson(checkTokenSequence).then((data, params) => {
                   	                if (data["notoken"] == "true") {
                   	                    openOAuthLogin(url, redirectUri).then((parsedResponse) => {
-                  	                        this.c8o.log.debug("Parsed response is : " + JSON.stringify(parsedResponse));
-                  	
-                  	                        this.c8o.callJsonObject(loginSequence, parsedResponse)
+                  	                        page.c8o.log.debug("Parsed response is : " + JSON.stringify(parsedResponse));
+                  	                        page.c8o.callJsonObject(loginSequence, parsedResponse)
                   	                            .then((data: any) => {
                   	                                if (data["login"] != "ko") {
                   	                                    resolve(data);
@@ -134,10 +133,10 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                   	                let responseParams: string;
                   	                let parsedResponse: Object = {};
                   	                browserRef.addEventListener("loadstart", (evt) => {
-                  	                    this.c8o.log.debug("Auth Page loaded")
+                  	                    page.c8o.log.debug("Auth Page loaded")
                   	                    if ((evt.url).indexOf(redirectUri) === 0) {
                   	                        browserRef.removeEventListener("exit", (evt) => { });
-                  	                        this.c8o.log.debug("Exit Listener removed")
+                  	                        page.c8o.log.debug("Exit Listener removed")
                   	                        browserRef.close();
                   	                        if (evt.url.indexOf("#") != -1)     // Microsoft Azure
                   	                            responseParams = ((evt.url).split("#")[1]).split("&");
@@ -152,13 +151,13 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                   	                                parsedResponse["code"] !== null)) {
                   	                            resolve(parsedResponse);
                   	                        } else {
-                  	                            this.c8o.log.error("oAuthClient : oAuth authentication error:" + evt.url)
+                  	                            page.c8o.log.error("oAuthClient : oAuth authentication error:" + evt.url)
                   	                            reject("oAuth authentication error");
                   	                        }
                   	                    }
                   	                });
                   	                browserRef.addEventListener("exit", function (evt) {
-                  	                    this.c8o.log.debug("Auth Page closed")
+                  	                    page.c8o.log.debug("Auth Page closed")
                   	                });
                   	            }
                   	            else {
@@ -169,18 +168,29 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                   	                else{
                   	                    window.open(url.toString(), "cafLogin", "location=no, clearsessioncache=yes, clearcache=yes");
                   	                }
-                  	                window.addEventListener(''message'', (parsedResponse) => {
-                  	                    if (parsedResponse.data["access_token"] != undefined &&
-                  	                        parsedResponse.data["access_token"] != null) {
-                  	                        resolve(parsedResponse.data);
-                  	                    }
-                  	                    /* 
-                  	                    Disabled because of bug with captchas (ref #27)
-                  	                    else {
-                  	                        this.c8o.log.error("oAuthClient : oAuth authentication error");
-                  	                        reject("oAuth authentication error");
-                  	                    }*/
-                  	                });
+                  	                
+                  	                // poll untill we have our parsed response in local storage...
+                  					let intervalId = window.setInterval(function(){
+                  						let resp = window.localStorage.getItem("FC-parsedResponse")
+                  						if (resp != null) {
+                  							window.clearInterval(intervalId)
+                  							window.localStorage.removeItem("FC-parsedResponse")
+                  	                        resolve(JSON.parse(resp));
+                  						}
+                  					}, 100);
+                  	                
+                  //	                window.addEventListener(''message'', (parsedResponse) => {
+                  //	                    if (parsedResponse.data["access_token"] != undefined &&
+                  //	                        parsedResponse.data["access_token"] != null) {
+                  //	                        resolve(parsedResponse.data);
+                  //	                    }
+                  //	                    /* 
+                  //	                    Disabled because of bug with captchas (ref #27)
+                  //	                    else {
+                  //	                        this.c8o.log.error("oAuthClient : oAuth authentication error");
+                  //	                        reject("oAuth authentication error");
+                  //	                    }*/
+                  //	                });
                   	            }
                   	        });
                   	    }
@@ -203,6 +213,8 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                   				"lib_FranceConnect.loginWithCode",
                   				"lib_FranceConnect.checkAccessOpenID"
                   			)
+                  
+                  
                   		} catch (e) {
                   			page.c8o.log.error(''[[FranceConnect] ''+ JSON.stringify(e));
                   		} finally {

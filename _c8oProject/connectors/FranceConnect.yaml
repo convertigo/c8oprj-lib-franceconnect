@@ -1,0 +1,18 @@
+server: ${lib_franceconnect.tokenendpoint=fcp.integ01.dev-franceconnect.fr}
+↓GetToken [transactions.JsonHttpTransaction]: 
+  ↑default: true
+  httpVerb: POST
+  subDir: api/v1/token
+  ↓grant_type [variables.RequestableHttpVariable-1708445246268]: 
+    httpMethod: POST
+    value: authorization_code
+  ↓redirect_uri [variables.RequestableHttpVariable-1708445246270]: 
+    httpMethod: POST
+  ↓client_id [variables.RequestableHttpVariable-1708445246272]: 
+    httpMethod: POST
+  ↓client_secret [variables.RequestableHttpVariable-1708445246274]: 
+    httpMethod: POST
+  ↓code [variables.RequestableHttpVariable-1708445246276]: 
+    httpMethod: POST
+↓Logout [transactions.JsonHttpTransaction]: 
+  subDir: api/v1/logout

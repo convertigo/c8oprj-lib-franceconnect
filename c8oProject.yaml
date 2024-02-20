@@ -21,6 +21,7 @@
     '
   corsOrigin: =Origin
   version: 1.0
+  ↓FranceConnect [connectors.HttpConnector]: 🗏 connectors/FranceConnect.yaml
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
   ↓checkAccessOpenID [sequences.GenericSequence]: 🗏 sequences/checkAccessOpenID.yaml
   ↓getConfiguration [sequences.GenericSequence]: 🗏 sequences/getConfiguration.yaml

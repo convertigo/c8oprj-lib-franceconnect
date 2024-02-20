@@ -12,10 +12,34 @@ comment: |
       - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
       - com.twinsoft.convertigo.beans.common.XMLVector: 
         - java.lang.String: 
-          - ↑value: 1706637147596
+          - ↑value: 1706637147590
         - java.lang.String: 
-          - ↑value: ./document/object/id_token
+          - ↑value: ./code
   ↓jThen [steps.ThenStep-1706637147617]: 
+    ↓Call_Transaction [steps.TransactionStep-1708445274254]: 
+      sourceTransaction: lib_FranceConnect.FranceConnect.GetToken
+      ↓grant_type [variables.StepVariable-1708445274256]: 
+        value: authorization_code
+      ↓redirect_uri [variables.StepVariable-1708445274258]: 
+      ↓client_id [variables.StepVariable-1708445274260]: 
+      ↓client_secret [variables.StepVariable-1708445274262]: 
+        sourceDefinition: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: 1706637147590
+              - java.lang.String: 
+                - ↑value: ./keySecret/text()
+      ↓code [variables.StepVariable-1708445274264]: 
+        sourceDefinition: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: 1706637147590
+              - java.lang.String: 
+                - ↑value: ./code/text()
     ↓login [steps.XMLElementStep-1706637147620]: 
       nodeName: login
       nodeText: ok
@@ -25,9 +49,9 @@ comment: |
           - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
           - com.twinsoft.convertigo.beans.common.XMLVector: 
             - java.lang.String: 
-              - ↑value: 1706637147596
+              - ↑value: 1706637147590
             - java.lang.String: 
-              - ↑value: ./document/object/id_token/text()
+              - ↑value: ./code/text()
       variableName: id_token
     ↓SetOAuthTokenInSession [steps.SessionSetStep-1706637147626]: 
       expression: 
@@ -87,5 +111,3 @@ comment: |
 ↓code [variables.RequestableVariable-1706637147653]: 
 ↓keySecret [variables.RequestableVariable-1706637147656]: 
   value: ${lib_franceconnect.clientsecret.secret=6ceb140618b848e1ec51f55407192f729ac733976c1cc8f5fabaf6393f731422}
-↓redirect_uri [variables.RequestableVariable-1706637147659]: 
-  value: https://www.convertigo.com/authorize
