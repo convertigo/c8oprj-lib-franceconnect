@@ -17,6 +17,7 @@ This library uses the following symbols :
 | Symbol                            		| Usage    		| Default Value|
 | --------------------------------------| ------------- |---------------|
 | lib_franceconnect.authorize 			| The FranceConnect Authorize Url. Can be https://fcp.integ01.dev-franceconnect.fr/api/v1/authorize for integration environment or https://app.franceconnect.gouv.fr/api/v1/authorize for production		| https://app.franceconnect.gouv.fr/api/v1/authorize  |
+| lib_franceconnect.redirecturi   		| The redirection URI after login. Must relect the hosted application in the form : https://&gt;hosted server DNS name&lt;/convertigo/projects/lib_FranceConnect/getTokenFranceConnect.html	 | https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/getTokenFranceConnect.html |
 | lib_franceconnect.clientid   			| The France Connect client id	 | 211286433e39cce01db448d80181bdfd005554b19cd51b3fe7943f6b3b86ab6e |
 | lib_franceconnect.clientsecret.secret 	| The France Connect client secret	|2791a731e6a59f56b6b4dd0d08c9b1f593b5f3658b9fd731cb24248e2669af4b |
 
