@@ -21,7 +21,9 @@ comment: |
       ↓grant_type [variables.StepVariable-1708445274256]: 
         value: authorization_code
       ↓redirect_uri [variables.StepVariable-1708445274258]: 
+        value: ${lib_franceconnect.redirecturi=https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/getTokenFranceConnect.html}
       ↓client_id [variables.StepVariable-1708445274260]: 
+        value: ${lib_franceconnect.clientid=c2ca3f728e11841accb69191d081801e95be6b153fe0a640a68f4c49d790adeb}
       ↓client_secret [variables.StepVariable-1708445274262]: 
         sourceDefinition: 
           - xmlizable: 
@@ -49,9 +51,9 @@ comment: |
           - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
           - com.twinsoft.convertigo.beans.common.XMLVector: 
             - java.lang.String: 
-              - ↑value: 1706637147590
+              - ↑value: 1708445274254
             - java.lang.String: 
-              - ↑value: ./code/text()
+              - ↑value: ./document/object/id_token/text()
       variableName: id_token
     ↓SetOAuthTokenInSession [steps.SessionSetStep-1706637147626]: 
       expression: 
@@ -61,29 +63,29 @@ comment: |
             - ↑mode: SOURCE
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: 1706637147596
+                - ↑value: 1708445274254
               - java.lang.String: 
                 - ↑value: ./document/object/access_token/text()
       key: oAuthAccessToken
     ↓DecodeJWT [steps.SimpleStep-1706637147629]: 
       expression: |
-        '//imports
+        //imports
         var xmlUtils = use("com.twinsoft.convertigo.engine.util.XMLUtils");
         
         //code
-        b64 = id_token.split(''.'')[1];
-        // hack of the hell (google gives us a JSON without ending)
-        try{
-        	db64 = JSON.parse(com.twinsoft.convertigo.engine.util.Base64.decodeToString(b64));
-        }
-        catch(e){
-        	db64 = JSON.parse(com.twinsoft.convertigo.engine.util.Base64.decodeToString(b64)+''}'');
-        }
+        b64 = id_token.split('.')[1];
+        
+        jsonData = com.twinsoft.convertigo.engine.util.Base64.decodeToString(b64);
+        log.warn("[FC] JSON Data is" +  jsonData);
+        
+        // Strange ... DecodeToString seams to miss 2 last chars of 'arm:null}' so we add them
+        db64 = JSON.parse(jsonData + 'l}');
+        
         // Convert JSON to XML and attach it to main document
         var jsonObject = new org.codehaus.jettison.json.JSONObject(JSON.stringify(db64));
         xmlUtils.jsonToXml(jsonObject, "object", dom.getDocumentElement(), false, true, "item");
-        gid = "google:" + db64.sub + ":" + db64.email;
-        '
+        gid = "fc:" + db64.sub + ":" + db64.email;
+        
     ↓Set_authenticated_user [steps.SetAuthenticatedUserStep-1706637147632]: 
       userid: 
         - xmlizable: 
@@ -99,15 +101,13 @@ comment: |
       expression: gid
       nodeName: authUser
   ↓jElse [steps.ElseStep-1706637147647]: 
-    ↓Copy [steps.XMLCopyStep-1706637147650]: 
-      sourceDefinition: 
+    ↓Error_structure [steps.XMLErrorStep-1708445445082]: 
+      message: 
         - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-          - com.twinsoft.convertigo.beans.common.XMLVector: 
-            - java.lang.String: 
-              - ↑value: 1706637147596
-            - java.lang.String: 
-              - ↑value: ./document/object
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: No Autorization code found
 ↓code [variables.RequestableVariable-1706637147653]: 
 ↓keySecret [variables.RequestableVariable-1706637147656]: 
   value: ${lib_franceconnect.clientsecret.secret=6ceb140618b848e1ec51f55407192f729ac733976c1cc8f5fabaf6393f731422}

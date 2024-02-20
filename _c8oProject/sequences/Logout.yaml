@@ -1,0 +1,18 @@
+↓Get_from_session [steps.SessionGetStep-1708448697313]: 
+  key: oAuthAccessToken
+↓Call_Transaction [steps.TransactionStep-1708445879542]: 
+  sourceTransaction: lib_FranceConnect.FranceConnect.Logout
+  ↓id_token_hint [variables.StepVariable-1708448676655]: 
+    sourceDefinition: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: 1708448697313
+          - java.lang.String: 
+            - ↑value: ./expression/text()
+  ↓state [variables.StepVariable-1708448676657]: 
+  ↓post_logout_uri [variables.StepVariable-1708448676659]: 
+↓Remove_from_session [steps.SessionRemoveStep-1708448808437]: 
+  key: oAuthAccessToken
+↓Remove_authenticated_user [steps.RemoveAuthenticatedUserStep-1708448832471]: 

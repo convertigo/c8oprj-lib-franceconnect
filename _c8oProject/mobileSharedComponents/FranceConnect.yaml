@@ -36,21 +36,6 @@ comment: Drop this component in your login page to enable FranceConnect connecti
       ↓CallSequence [ngx.components.UIDynamicAction-1706630931954]: 
         beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_FranceConnect.getConfiguration"}'
         tagName: CallSequence
-        ↓OAuthLogin [ngx.components.UIDynamicAction-1706630972468]: 
-          beanData: |
-            '{
-             "ionBean": "OAuthLoginAction",
-             "provider": "plain:openid",
-             "clientid": "source:{\"filter\":\"Sequence\",\"project\":\"lib_FranceConnect\",\"input\":\"\",\"model\":{\"data\":[{\"sequence\":\"lib_FranceConnect.getConfiguration\",\"marker\":\"\"}],\"path\":\"?.OpenIDClientID\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}",
-             "scope": "plain:openid",
-             "response_type": "plain:code",
-             "loginRequestable": "plain:lib_FranceConnect.loginWithCode",
-             "checkAccessTokenRequestable": "plain:lib_FranceConnect.checkAccessOpenID",
-             "authorization_endpoint": "source:{\"filter\":\"Sequence\",\"project\":\"lib_FranceConnect\",\"input\":\"\",\"model\":{\"data\":[{\"sequence\":\"lib_FranceConnect.getConfiguration\",\"marker\":\"\"}],\"path\":\"?.AuthorizeEndPoint\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}",
-             "callbackurl": "plain:https:\/\/pedro.convertigo.net\/convertigo\/projects\/lib_FranceConnect\/getTokenFranceConnect.html"
-            }'
-          isEnabled: false
-          tagName: OAuthLogin
         ↓PerformOIDC [ngx.components.UICustomAsyncAction-1708422432196]: 
           actionValue: 
             - xmlizable: 
@@ -235,7 +220,7 @@ comment: Drop this component in your login page to enable FranceConnect connecti
             varValue: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                - MobileSmartSourceType: plain:https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/getTokenFranceConnect.html
+                - MobileSmartSourceType: source:{"filter":"Sequence","project":"lib_FranceConnect","input":"","model":{"data":[{"sequence":"lib_FranceConnect.getConfiguration","marker":""}],"path":"?.RedirectURI","prefix":"","suffix":"","custom":"","useCustom":false}}
   ↓FormatLayout [ngx.components.UIDynamicAttr-1707918101721]: 
     beanData: '{"ionBean":"FormatLayout","TextAlignment":"plain:ion-text-center"}'
     selfClose: false

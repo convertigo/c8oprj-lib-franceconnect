@@ -26,6 +26,7 @@
   ↓checkAccessOpenID [sequences.GenericSequence]: 🗏 sequences/checkAccessOpenID.yaml
   ↓getConfiguration [sequences.GenericSequence]: 🗏 sequences/getConfiguration.yaml
   ↓loginWithCode [sequences.GenericSequence]: 🗏 sequences/loginWithCode.yaml
+  ↓Logout [sequences.GenericSequence]: 🗏 sequences/Logout.yaml
   ↓lib_OAuth_reference [references.ProjectSchemaReference]: 
     projectName: lib_OAuth=https://github.com/convertigo/c8oprj-lib-oauth.git:branch=8.0.0
   ↓Project_reference [references.ProjectSchemaReference]: 

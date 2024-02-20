@@ -56,6 +56,15 @@ title: First page
              "IconIosName": "plain"
             }'
           tagName: ion-icon
+        ↓attr [ngx.components.UIControlEvent-1708448876430]: 
+          ↓CallSequence [ngx.components.UIDynamicAction-1708448885564]: 
+            beanData: |
+              '{
+               "ionBean": "CallSequenceAction",
+               "requestable": "plain:lib_FranceConnect.Logout",
+               "noAutoLogin": "plain:true"
+              }'
+            tagName: CallSequence
 ↓Content [ngx.components.UIDynamicElement-1489674805352]: 
   beanData: '{"ionBean":"Content"}'
   comment: Page content

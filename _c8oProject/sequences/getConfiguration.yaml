@@ -5,3 +5,6 @@ comment: Returns to the client the public OAuth credentials
 ↓Element114 [steps.XMLElementStep-1706636986803]: 
   nodeName: AuthorizeEndPoint
   nodeText: ${lib_franceconnect.authorize=https://fcp.integ01.dev-franceconnect.fr/api/v1/authorize}
+↓Element115 [steps.XMLElementStep-1708445737004]: 
+  nodeName: RedirectURI
+  nodeText: ${lib_franceconnect.redirecturi=https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/getTokenFranceConnect.html}

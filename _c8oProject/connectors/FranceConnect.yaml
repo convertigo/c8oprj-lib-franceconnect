@@ -1,3 +1,5 @@
+https: true
+port: 443
 server: ${lib_franceconnect.tokenendpoint=fcp.integ01.dev-franceconnect.fr}
 ↓GetToken [transactions.JsonHttpTransaction]: 
   ↑default: true
@@ -16,3 +18,6 @@ server: ${lib_franceconnect.tokenendpoint=fcp.integ01.dev-franceconnect.fr}
     httpMethod: POST
 ↓Logout [transactions.JsonHttpTransaction]: 
   subDir: api/v1/logout
+  ↓id_token_hint [variables.RequestableHttpVariable-1708448661255]: 
+  ↓state [variables.RequestableHttpVariable-1708448661257]: 
+  ↓post_logout_uri [variables.RequestableHttpVariable-1708448661259]: 
