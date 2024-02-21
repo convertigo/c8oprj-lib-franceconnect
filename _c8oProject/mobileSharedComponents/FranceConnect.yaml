@@ -163,19 +163,6 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                   	                        resolve(JSON.parse(resp));
                   						}
                   					}, 100);
-                  	                
-                  //	                window.addEventListener(''message'', (parsedResponse) => {
-                  //	                    if (parsedResponse.data["access_token"] != undefined &&
-                  //	                        parsedResponse.data["access_token"] != null) {
-                  //	                        resolve(parsedResponse.data);
-                  //	                    }
-                  //	                    /* 
-                  //	                    Disabled because of bug with captchas (ref #27)
-                  //	                    else {
-                  //	                        this.c8o.log.error("oAuthClient : oAuth authentication error");
-                  //	                        reject("oAuth authentication error");
-                  //	                    }*/
-                  //	                });
                   	            }
                   	        });
                   	    }
