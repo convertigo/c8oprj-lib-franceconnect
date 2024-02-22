@@ -104,6 +104,26 @@ title: First page
         beanData: '{"ionBean":"FormatLayout","TextAlignment":"plain:ion-text-center"}'
         selfClose: false
         tagName: FormatLayout
+    ↓Button [ngx.components.UIDynamicElement-1708601479809]: 
+      beanData: '{"ionBean":"Button"}'
+      tagName: ion-button
+      ↓Label [ngx.components.UIDynamicElement-1708601479804]: 
+        beanData: '{"ionBean":"Label"}'
+        tagName: ion-label
+        ↓some_text [ngx.components.UIText-1708601479806]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:Logout
+      ↓attr [ngx.components.UIControlEvent-1708601479808]: 
+        ↓CallSequence [ngx.components.UIDynamicAction-1708601502501]: 
+          beanData: |
+            '{
+             "ionBean": "CallSequenceAction",
+             "requestable": "plain:lib_FranceConnect.Logout",
+             "noAutoLogin": "plain:true"
+            }'
+          tagName: CallSequence
 ↓Footer [ngx.components.UIDynamicElement-1491634242460]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer

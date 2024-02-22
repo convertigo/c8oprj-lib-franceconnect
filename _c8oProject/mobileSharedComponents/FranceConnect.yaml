@@ -1,5 +1,16 @@
 comment: Drop this component in your login page to enable FranceConnect connections
 ↓SharedComponent_Event [ngx.components.UISharedComponentEvent-1706630916018]: 
+  ↓CallSequence [ngx.components.UIDynamicAction-1708601906116]: 
+    beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_FranceConnect.checkAccessOpenID"}'
+    tagName: CallSequence
+    ↓SetGlobal [ngx.components.UIDynamicAction-1708601933514]: 
+      beanData: |
+        '{
+         "ionBean": "SetGlobalAction",
+         "Property": "plain:fcConnectedInfo",
+         "Value": "source:{\"filter\":\"Action\",\"project\":\"lib_FranceConnect\",\"input\":\"\",\"model\":{\"data\":[{\"priority\":1708601906116,\"rootEvent\":false,\"pageLocals\":false},{\"priority\":1706630916018,\"rootEvent\":true,\"pageLocals\":false}],\"path\":\"?.out\",\"prefix\":\"\",\"suffix\":\"?.fcConnectedInfo\",\"custom\":\"\",\"useCustom\":false}}"
+        }'
+      tagName: SetGlobal
 ↓Div1 [ngx.components.UIDynamicElement-1707918203411]: 
   beanData: '{"ionBean":"DivTag"}'
   tagName: div
