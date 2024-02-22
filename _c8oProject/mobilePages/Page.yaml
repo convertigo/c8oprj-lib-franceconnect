@@ -71,6 +71,39 @@ title: First page
   tagName: ion-content
   ↓tag [ngx.components.UIUseShared-1706630865403]: 
     sharedcomponent: lib_FranceConnect.Application.NgxApp.FranceConnect
+  ↓tag1 [ngx.components.UIControlDirective-1708599316539]: 
+    directiveName: If
+    directiveSource: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Global","project":"lib_FranceConnect","input":"","model":{"data":[{"sharedObject":"router.sharedObject"}],"path":"?.fcConnectedInfo","prefix":"","suffix":"","custom":"","useCustom":false}}
+    ↓H1 [ngx.components.UIDynamicElement-1708598964286]: 
+      beanData: '{"ionBean":"Heading1"}'
+      tagName: h1
+      ↓some_text [ngx.components.UIText-1708598964285]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: plain:Welcome 
+      ↓some_text1 [ngx.components.UIText-1708598981949]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Global","project":"lib_FranceConnect","input":"","model":{"data":[{"sharedObject":"router.sharedObject"}],"path":"?.fcConnectedInfo","prefix":"","suffix":"?.given_name","custom":"","useCustom":false}}
+      ↓some_text3 [ngx.components.UIText-1708599069941]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: 'plain: '
+      ↓some_text2 [ngx.components.UIText-1708599043094]: 
+        textValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Global","project":"lib_FranceConnect","input":"","model":{"data":[{"sharedObject":"router.sharedObject"}],"path":"?.fcConnectedInfo","prefix":"","suffix":"?.family_name","custom":"","useCustom":false}}
+      ↓FormatLayout [ngx.components.UIDynamicAttr-1708599281873]: 
+        beanData: '{"ionBean":"FormatLayout","TextAlignment":"plain:ion-text-center"}'
+        selfClose: false
+        tagName: FormatLayout
 ↓Footer [ngx.components.UIDynamicElement-1491634242460]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer

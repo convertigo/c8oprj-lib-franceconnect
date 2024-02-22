@@ -21,6 +21,18 @@ This library uses the following symbols :
 | lib_franceconnect.clientid   			| The France Connect client id	 | 211286433e39cce01db448d80181bdfd005554b19cd51b3fe7943f6b3b86ab6e |
 | lib_franceconnect.clientsecret.secret 	| The France Connect client secret	|2791a731e6a59f56b6b4dd0d08c9b1f593b5f3658b9fd731cb24248e2669af4b |
 
+# globals
+
+When FranceConnect connection is successful you will find in the **fcConnectedInfo** global object of your application an object with the following fields :
+
+| Field                 | Description                                      |
+| ----------------------| -------------------------------------------------|
+| family_name 			| The FC family name as described in the FC scope  |
+| given_name 			| The FC given name as described in the FC scope   |
+| sub 					| The FC sub id (Unique ID for the user)           |
+
+Otherwise this global will be **null**
+
 
 
 For more technical informations : [documentation](./project.md)

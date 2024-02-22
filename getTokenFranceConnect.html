@@ -111,6 +111,10 @@
 	        	}
 	        } else {
 	        	console.log("Error on oAuth/ Open ID");
+	        	if (parsedResponse["error"]) {
+		        	console.log("[FC] Error 			: " + parsedResponse["error"]);
+		        	console.log("[FC] Error Description : " + parsedResponse["error_description"]);
+	        	}
 	        	window.close();
 	        }
          </script>

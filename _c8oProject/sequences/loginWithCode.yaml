@@ -95,6 +95,7 @@ comment: |
             - →→: gid
     ↓Authorization [steps.XMLConcatStep-1708450313454]: 
       nodeName: Authorization
+      output: false
       sourcesDefinition: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -124,7 +125,6 @@ comment: |
                 - java.lang.String: 
                   - ↑value: ''
     ↓Call_Transaction1 [steps.TransactionStep-1708450235390]: 
-      output: true
       sourceTransaction: lib_FranceConnect.FranceConnect.UserInfo
       ↓__header_Authorization [variables.StepVariable-1708450293637]: 
         sourceDefinition: 
@@ -135,13 +135,15 @@ comment: |
                 - ↑value: 1708450313454
               - java.lang.String: 
                 - ↑value: ./text()
-    ↓jElement [steps.ElementStep-1706637147635]: 
-      comment: Still there to support old api (replaced by authUser in new one)
-      expression: gid
-      nodeName: decodedToken
-    ↓jElement1 [steps.ElementStep-1706637147638]: 
-      expression: gid
-      nodeName: authUser
+    ↓Copy [steps.XMLCopyStep-1708598257098]: 
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1708450235390
+            - java.lang.String: 
+              - ↑value: ./document/object/*
   ↓jElse [steps.ElseStep-1706637147647]: 
     ↓Error_structure [steps.XMLErrorStep-1708445445082]: 
       message: 
