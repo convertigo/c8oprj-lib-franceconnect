@@ -106,6 +106,8 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                     	                    if(isABoringBrowser){
                     	                        win.close();
                     	                    }
+                    						// We already have a Token so we are connected , just retrieve conneciton info
+                    	                    page.router.sharedObject["fcConnectedInfo"] = data["fcConnectedInfo"]
                     	                    resolve(data);
                     	                    return null;
                     	                }

@@ -27,6 +27,26 @@ comment: |
             - ↑value: 1706636768983
           - java.lang.String: 
             - ↑value: ./expression/text()
+  ↓GetConnectedInfo [steps.SessionGetObjectStep-1708600369733]: 
+    key: fcConnectedInfo
+    output: false
+  ↓object [steps.JsonToXmlStep-1708600949147]: 
+    jsonObject: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+        - SmartType: 
+          - ↑mode: SOURCE
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1708600369733
+            - java.lang.String: 
+              - ↑value: .
+    key: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+        - SmartType: 
+          - ↑mode: PLAIN
+          - →→: fcConnectedInfo
   ↓Return [steps.ReturnStep-1706636768992]: 
 ↓login [steps.XMLElementStep-1706636768995]: 
   nodeName: notoken

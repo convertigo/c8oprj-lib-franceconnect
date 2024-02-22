@@ -144,6 +144,24 @@ comment: |
               - ↑value: 1708450235390
             - java.lang.String: 
               - ↑value: ./document/object/*
+    ↓userInfo [steps.JsonSourceStep-1708600186024]: 
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1708450235390
+            - java.lang.String: 
+              - ↑value: ./document/object
+      variableName: userInfo
+    ↓SetUserInfoInSesson [steps.SessionSetObjectStep-1708600108332]: 
+      key: fcConnectedInfo
+      value: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: JS
+            - →→: userInfo
   ↓jElse [steps.ElseStep-1706637147647]: 
     ↓Error_structure [steps.XMLErrorStep-1708445445082]: 
       message: 
