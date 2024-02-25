@@ -177,12 +177,12 @@ localBuild {
 	
 	//// set an array of platforms (Convertigo Platforms object) names to build, empty means all declared platforms
 	//// can also be configured with a -Pconvertigo.localBuild.platforms as Gradle parameter (names separated by comma)
-	// platforms = []
+	platforms = ['iOS']
 	
 	//// build mode of the native package, can be 'release' or 'debug' (default)
 	//// can also be configured with a -Pconvertigo.localBuild.mode as Gradle parameter
 	//// the Android 'debug' mode doesn't need signing configuration
-	// mode = 'debug'
+	mode = 'debug'
 	
 	//// define where are moved mobile package when the build success
 	//// can also be configured with a -Pconvertigo.localBuild.packageDestinationDir as Gradle parameter

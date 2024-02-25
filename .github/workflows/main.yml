@@ -62,7 +62,7 @@ jobs:
         C8O_PASSWORD: ${{ secrets.C8O_PASSWORD }}
       run: |
         echo "Build, deploy to $C8O_SERVER and export to project.zip the application" && \
-        sh gradlew --stacktrace --info car deploy -x generateMobileBuilder \
+        sh gradlew --stacktrace --info localBuild -x generateMobileBuilder \
           -Pconvertigo.deploy.server=$C8O_SERVER \
           -Pconvertigo.deploy.user=$C8O_USER \
           -Pconvertigo.deploy.password=$C8O_PASSWORD
