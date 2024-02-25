@@ -55,6 +55,11 @@ jobs:
             /home/runner/convertigo/nodes
           key: ${{ runner.os }}-build-node-${{ hashFiles('**/package.json', '**/_private/ionic/version.json') }}
           restore-keys: ${{ runner.os }}-build-node-
+    - name: Import iOS certificates
+      uses: apple-actions/import-codesign-certs@v1
+      with: 
+        p12-file-base64: ${{ secrets.IOS_P12_B64 }}
+        p12-password: ${{ secrets.IOS_P12_PASSWORD }}
     - name: Convertigo build, deploy to server and export the application
       env:
         C8O_SERVER: ${{ secrets.C8O_SERVER }}
@@ -62,6 +67,7 @@ jobs:
         C8O_PASSWORD: ${{ secrets.C8O_PASSWORD }}
       run: |
         echo "Build, deploy to $C8O_SERVER and export to project.zip the application" && \
+        echo $IOS_PROFILE_B64 | base64 -d > ios.mobileprovision && \
         sh gradlew --stacktrace --info localBuild -x generateMobileBuilder \
           -Pconvertigo.deploy.server=$C8O_SERVER \
           -Pconvertigo.deploy.user=$C8O_USER \
