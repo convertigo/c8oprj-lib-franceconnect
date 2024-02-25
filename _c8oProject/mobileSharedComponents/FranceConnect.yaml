@@ -225,6 +225,19 @@ comment: Drop this component in your login page to enable FranceConnect connecti
                     			return;
                     		}
                     '
+            cordova_plugins: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+                - com.twinsoft.convertigo.beans.common.XMLVector: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+                    - com.twinsoft.convertigo.beans.common.XMLVector: 
+                      - java.lang.String: 
+                        - ↑value: cordova-plugin-inappbrowser
+                      - java.lang.String: 
+                        - ↑value: 5.0.0
+                      - java.lang.String: 
+                        - ↑value: '{}'
             ↓ClientID [ngx.components.UIControlVariable-1708422444818]: 
               varValue: 
                 - xmlizable: 
