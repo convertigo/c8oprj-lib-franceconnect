@@ -46,6 +46,7 @@
     projectName: mobilebuilder_tpl_8_1_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_1_0_ngx.zip
   ↓Application [core.MobileApplication]: 
     comment: Describes the mobile application global properties
+    endpoint: https://pedro.convertigo.net/convertigo
     splashRemoveMode: beforeUpdate
     ↓Android [mobileplatforms.Android]: 
       comment: Android platform
