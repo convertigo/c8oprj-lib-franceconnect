@@ -332,7 +332,7 @@ title: First page
                 textValue: 
                   - xmlizable: 
                     - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                    - MobileSmartSourceType: plain:lib_FranceConnect.client_secret
+                    - MobileSmartSourceType: plain:lib_FranceConnect.client_secret.secret
             ↓RoleSecretCol [ngx.components.UIDynamicElement-1790406148748]: 
               beanData: '{"ionBean":"GridCol"}'
               tagName: ion-col

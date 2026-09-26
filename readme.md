@@ -22,7 +22,7 @@ The OIDC protocol is handled server-side: on the web, the browser is redirected 
 The library ships with a small **demo application** (`Application > NgxApp`, page `Page`, titled *"Démo utilisation France Connect"*). It is ready to run out of the box and **preconfigured for the "pedro" test environment**:
 
 - It is meant to be deployed on the Convertigo test server **`https://pedro.convertigo.net`**. The redirect URIs, the CORS origin and the application endpoint all point to this server.
-- It uses the **FranceConnect v2 sandbox** (`fcp-low.sbx.dev-franceconnect.fr`) with a dedicated sandbox service provider instance. Its test client ID and client secret are the default values of the symbols, and the pedro login and logout redirect URLs must be declared for this instance in the FranceConnect partner space.
+- It uses the **FranceConnect v2 sandbox** (`fcp-low.sbx.dev-franceconnect.fr`) with a dedicated sandbox service provider instance. Its test client ID is the default value of `lib_franceconnect.clientid`; the client secret has an empty default and **must be set** in the Administration Console for every environment. The pedro login and logout redirect URLs must be declared for this instance in the FranceConnect partner space.
 - Once the project is deployed on pedro, open `https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/DisplayObjects/mobile/`, click the FranceConnect button and sign in with a sandbox test account. The page then shows *"Welcome <given name> <family name>"*, and the **Logout** buttons end both the Convertigo session and the FranceConnect session.
 
 The demo page is only an example: it shows how to use the **FranceConnect** shared component, the `fcConnectedInfo` global and the `Logout` sequence. Your own applications only need the shared component.
@@ -31,14 +31,14 @@ To run the demo, or any application using the library, on another server or agai
 
 # Symbols
 
-All symbols are declared inline with a default value, so the project loads without any configuration. The defaults target the **FranceConnect v2 sandbox** and the **pedro** test server (`pedro.convertigo.net`) used by the demo application. Override them in the Administration Console (*Symbols*) for any other environment.
+All symbols except the secured one are declared inline with a default value. The defaults target the **FranceConnect v2 sandbox** and the **pedro** test server (`pedro.convertigo.net`) used by the demo application. Override them in the Administration Console (*Symbols*) for any other environment, and set the secured symbol `lib_FranceConnect.client_secret.secret` there for **every** environment.
 
-Symbol names are case-sensitive: the `lib_franceconnect.*` symbols are lowercase, while `lib_FranceConnect.client_secret` and `lib_FranceConnect.corsOrigin` keep the project case.
+Symbol names are case-sensitive: the `lib_franceconnect.*` symbols are lowercase, while `lib_FranceConnect.client_secret.secret` and `lib_FranceConnect.corsOrigin` keep the project case.
 
 | Symbol | Used by | Purpose | Default (sandbox) | Production value |
 |---|---|---|---|---|
 | `lib_franceconnect.clientid` | `getConfiguration` (`OpenIDClientID`, sent to the browser), `loginWithCode` (`client_id` of the token request, `aud` check of the id_token) | Client ID of your FranceConnect service provider instance | `8ad0b8767c411951b730b545661ca6cdc213e2ed41788141862a76a9224dfe4e` (sandbox test instance) | Client ID of your production instance |
-| `lib_FranceConnect.client_secret` | `loginWithCode` only (server side, never sent to the browser): `client_secret` of the token request, and the HMAC key when an id_token is signed with `HS256` | Client secret of the same instance | Sandbox test secret. It is not a secret, so it can live in the repository | **Always override** with the production secret. Never commit a production secret in a default value |
+| `lib_FranceConnect.client_secret.secret` | `loginWithCode` only (server side, never sent to the browser): `client_secret` of the token request, and the HMAC key when an id_token is signed with `HS256` | Client secret of the same instance. The `.secret` suffix marks it as a **secured symbol**: the value is managed in the Administration Console only, never in the repository | Empty. The project does not load a working default: the value **must** be set in the Administration Console (*Symbols*) of every environment | **Always set** the symbol in the Administration Console (*Symbols*) of the target server. Never commit a secret in a default value |
 | `lib_franceconnect.scopes` | `getConfiguration` (`Scopes`, sent to the browser and used as the `scope` parameter of the authorize request) | **Space-separated** list of the FranceConnect scopes to request. It must contain `openid`. Each scope adds the matching claims to `fcConnectedInfo` (see *Globals*). Only request the scopes allowed for your service provider (data authorized in your FranceConnect / Datapass file) | `openid family_name given_name` | The scopes your service needs, for example `openid given_name family_name birthdate email` |
 | `lib_franceconnect.authorize` | `getConfiguration` (`AuthorizeEndPoint`) | Authorization endpoint opened by the browser | `https://fcp-low.sbx.dev-franceconnect.fr/api/v2/authorize` | `https://oidc.franceconnect.gouv.fr/api/v2/authorize` |
 | `lib_franceconnect.tokenendpoint` | `FranceConnect` HTTP connector, *Server* property (HTTPS, port 443) | **Host name only** (no scheme, no path) of the FranceConnect API. Despite its name it serves every server-side call: `api/v2/token`, `api/v2/userinfo` and `api/v2/jwks` | `fcp-low.sbx.dev-franceconnect.fr` | `oidc.franceconnect.gouv.fr` |
@@ -69,7 +69,7 @@ Create one instance per environment on https://espace.partenaires.franceconnect.
 
 Both redirect URLs must match, character for character, the symbol values (`lib_franceconnect.redirecturi` and `lib_franceconnect.postlogouturi`) overridden for the same environment. The web login redirects the current tab to the login page and back to the **login redirect URL**, so it must be a real, served application URL carrying the FranceConnect shared component — not a static relay page: the component itself reads `code` and `state` from the URL on load.
 
-Then copy the instance's client ID and secret into `lib_franceconnect.clientid` and `lib_FranceConnect.client_secret`.
+Then copy the instance's client ID into `lib_franceconnect.clientid`, and set the client secret as a **secured symbol**: in the Administration Console (*Symbols*), set `lib_FranceConnect.client_secret.secret` for the environment. Its default value is empty by design; `loginWithCode` fails with an empty `client_secret`.
 
 Sandbox test identity providers (for example `https://fip1-low.sbx.fcp.fournisseur-d-identite.fr`) and their test accounts are documented on https://docs.partenaires.franceconnect.gouv.fr/.
 
