@@ -27,7 +27,7 @@ comment: |
         }'
     ↓ClientSecret [steps.XMLElementStep-1790354094311]: 
       nodeName: client_secret
-      nodeText: ${lib_FranceConnect.client_secret.secret=}
+      nodeText: ${lib_FranceConnect.client_secret.secret=fe9598ee272ec8a44fb73850634ecc0e1f453cd0edec785319ba6508e369d62d}
       output: false
     ↓ClientIdValue [steps.XMLElementStep-1790356353712]: 
       nodeName: client_id
