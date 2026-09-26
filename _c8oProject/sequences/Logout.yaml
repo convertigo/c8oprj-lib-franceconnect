@@ -1,19 +1,55 @@
+accessibility: Hidden
+authenticatedContextRequired: true
 comment: Performs logout
-↓Get_from_session [steps.SessionGetStep-1708448697313]: 
-  key: oAuthAccessToken
-↓Call_Transaction [steps.TransactionStep-1708445879542]: 
-  sourceTransaction: lib_FranceConnect.FranceConnect.Logout
-  ↓id_token_hint [variables.StepVariable-1708448676655]: 
-    sourceDefinition: 
-      - xmlizable: 
-        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-        - com.twinsoft.convertigo.beans.common.XMLVector: 
-          - java.lang.String: 
-            - ↑value: 1708448697313
-          - java.lang.String: 
-            - ↑value: ./expression/text()
-  ↓state [variables.StepVariable-1708448676657]: 
-  ↓post_logout_uri [variables.StepVariable-1708448676659]: 
+↓EndSessionValue [steps.XMLElementStep-1790356353688]: 
+  nodeName: end_session_endpoint
+  nodeText: ${lib_franceconnect.endsession=https://fcp-low.sbx.dev-franceconnect.fr/api/v2/session/end}
+  output: false
+↓PostLogoutUriValue [steps.XMLElementStep-1790356353698]: 
+  nodeName: post_logout_redirect_uri
+  nodeText: ${lib_franceconnect.postlogouturi=https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/DisplayObjects/mobile/}
+  output: false
+↓endSessionJs [steps.SimpleSourceStep-1790356470622]: 
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1790356353688
+        - java.lang.String: 
+          - ↑value: ./text()
+  variableName: fcEndSession
+↓postLogoutUriJs [steps.SimpleSourceStep-1790356470631]: 
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1790356353698
+        - java.lang.String: 
+          - ↑value: ./text()
+  variableName: fcPostLogoutUri
+↓BuildLogoutUrl [steps.SimpleStep-1790356470640]: 
+  expression: |
+    '// Déconnexion FranceConnect v2 : URL /session/end à ouvrir par le navigateur
+    var idToken = context.httpSession.getAttribute("fcIdToken");
+    context.httpSession.removeAttribute("fcIdToken");
+    fcLogoutUrl = "";
+    if (idToken != null) {
+    	var sr = new java.security.SecureRandom();
+    	var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    	var logoutState = "";
+    	for (var i = 0; i < 43; i++) {
+    		logoutState += chars.charAt(sr.nextInt(chars.length));
+    	}
+    	fcLogoutUrl = String(fcEndSession) +
+    		"?id_token_hint=" + encodeURIComponent(String(idToken)) +
+    		"&state=" + logoutState +
+    		"&post_logout_redirect_uri=" + encodeURIComponent(String(fcPostLogoutUri));
+    }'
+↓logoutUrl [steps.ElementStep-1790356470650]: 
+  expression: fcLogoutUrl
+  nodeName: logoutUrl
 ↓Remove_from_session [steps.SessionRemoveStep-1708448808437]: 
   key: oAuthAccessToken
 ↓Remove_authenticated_user [steps.RemoveAuthenticatedUserStep-1708448832471]: 

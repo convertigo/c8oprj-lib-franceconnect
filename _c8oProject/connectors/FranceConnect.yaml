@@ -1,10 +1,13 @@
 https: true
 port: 443
-server: ${lib_franceconnect.tokenendpoint=fcp.integ01.dev-franceconnect.fr}
+server: ${lib_franceconnect.tokenendpoint=fcp-low.sbx.dev-franceconnect.fr}
+↓GetJwks [transactions.HttpTransaction]: 
+  comment: Clés publiques FranceConnect (JWKS) pour vérifier les signatures ES256/RS256
+  subDir: api/v2/jwks
 ↓GetToken [transactions.JsonHttpTransaction]: 
   ↑default: true
   httpVerb: POST
-  subDir: api/v1/token
+  subDir: api/v2/token
   ↓grant_type [variables.RequestableHttpVariable-1708445246268]: 
     httpMethod: POST
     value: authorization_code
@@ -16,13 +19,7 @@ server: ${lib_franceconnect.tokenendpoint=fcp.integ01.dev-franceconnect.fr}
     httpMethod: POST
   ↓code [variables.RequestableHttpVariable-1708445246276]: 
     httpMethod: POST
-↓Logout [transactions.JsonHttpTransaction]: 
-  subDir: api/v1/logout
-  ↓id_token_hint [variables.RequestableHttpVariable-1708448661255]: 
-  ↓state [variables.RequestableHttpVariable-1708448661257]: 
-  ↓post_logout_uri [variables.RequestableHttpVariable-1708448661259]: 
-↓UserInfo [transactions.JsonHttpTransaction]: 
-  subDir: api/v1/userinfo
-  ↓schema [variables.RequestableHttpVariable-1708450201719]: 
-    value: openid,email
-  ↓__header_Authorization [variables.RequestableHttpVariable-1708450285603]: 
+↓UserInfo [transactions.HttpTransaction]: 
+  comment: 'userinfo FranceConnect v2 : réponse JWS (texte) vérifiée dans loginWithCode'
+  subDir: api/v2/userinfo
+  ↓__header_Authorization [variables.RequestableHttpVariable-1790356353597]: 

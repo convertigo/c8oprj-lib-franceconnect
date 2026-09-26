@@ -1,10 +1,36 @@
+accessibility: Hidden
 comment: Returns to the client the public OAuth credentials
 ↓Element113 [steps.XMLElementStep-1706636344206]: 
   nodeName: OpenIDClientID
-  nodeText: ${lib_franceconnect.clientid=c2ca3f728e11841accb69191d081801e95be6b153fe0a640a68f4c49d790adeb}
+  nodeText: ${lib_franceconnect.clientid=8ad0b8767c411951b730b545661ca6cdc213e2ed41788141862a76a9224dfe4e}
 ↓Element114 [steps.XMLElementStep-1706636986803]: 
   nodeName: AuthorizeEndPoint
-  nodeText: ${lib_franceconnect.authorize=https://fcp.integ01.dev-franceconnect.fr/api/v1/authorize}
+  nodeText: ${lib_franceconnect.authorize=https://fcp-low.sbx.dev-franceconnect.fr/api/v2/authorize}
 ↓Element115 [steps.XMLElementStep-1708445737004]: 
   nodeName: RedirectURI
-  nodeText: ${lib_franceconnect.redirecturi=https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/getTokenFranceConnect.html}
+  nodeText: ${lib_franceconnect.redirecturi=https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/DisplayObjects/mobile/}
+↓Scopes [steps.XMLElementStep-1790357457947]: 
+  nodeName: Scopes
+  nodeText: ${lib_franceconnect.scopes=openid family_name given_name}
+↓GenerateStateNonce [steps.SimpleStep-1790354094324]: 
+  expression: |
+    '// state et nonce OIDC générés côté serveur (aléa cryptographique, 32 caractères minimum en v2) et gardés en session
+    var sr = new java.security.SecureRandom();
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var rnd = function(n) {
+    	var s = "";
+    	for (var i = 0; i < n; i++) {
+    		s += chars.charAt(sr.nextInt(chars.length));
+    	}
+    	return s;
+    };
+    fcState = rnd(43);
+    fcNonce = rnd(43);
+    context.httpSession.setAttribute("fcState", new java.lang.String(fcState));
+    context.httpSession.setAttribute("fcNonce", new java.lang.String(fcNonce));'
+↓State [steps.ElementStep-1790354094337]: 
+  expression: fcState
+  nodeName: State
+↓Nonce [steps.ElementStep-1790354094351]: 
+  expression: fcNonce
+  nodeName: Nonce

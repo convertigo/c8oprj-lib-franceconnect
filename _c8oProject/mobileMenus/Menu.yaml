@@ -1,4 +1,4 @@
-beanData: '{"ionBean":"Menu"}'
+beanData: '{"ionBean":"Menu","Disabled":"plain:true"}'
 comment: A menu with all pages added automatically
 tagName: ion-menu
 ↓Header [ngx.components.UIDynamicElement-1500890727582]: 
@@ -23,5 +23,6 @@ tagName: ion-menu
     tagName: ion-list
     ↓MenuAutoItems [ngx.components.UIDynamicMenuItems-1500890605250]: 
       beanData: '{"ionBean":"MenuAutoItems"}'
+      i18n: true
       itemtitle: 
       tagName: button

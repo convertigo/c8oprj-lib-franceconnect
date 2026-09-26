@@ -1,3 +1,4 @@
+accessibility: Hidden
 comment: |
   Perform the OAuth flow with code
   
@@ -16,23 +17,43 @@ comment: |
         - java.lang.String: 
           - ↑value: ./code
   ↓jThen [steps.ThenStep-1706637147617]: 
+    ↓CheckState [steps.SimpleStep-1790354094296]: 
+      expression: |
+        '// Anti-CSRF : le state renvoyé doit correspondre à celui généré par getConfiguration
+        var expectedState = context.httpSession.getAttribute("fcState");
+        context.httpSession.removeAttribute("fcState");
+        if (expectedState == null || state == null || String(state) != String(expectedState)) {
+        	throw new Error("[FC] state OIDC invalide");
+        }'
+    ↓ClientSecret [steps.XMLElementStep-1790354094311]: 
+      nodeName: client_secret
+      nodeText: ${lib_FranceConnect.client_secret=fe9598ee272ec8a44fb73850634ecc0e1f453cd0edec785319ba6508e369d62d}
+      output: false
+    ↓ClientIdValue [steps.XMLElementStep-1790356353712]: 
+      nodeName: client_id
+      nodeText: ${lib_franceconnect.clientid=8ad0b8767c411951b730b545661ca6cdc213e2ed41788141862a76a9224dfe4e}
+      output: false
+    ↓IssuerValue [steps.XMLElementStep-1790356353725]: 
+      nodeName: issuer
+      nodeText: ${lib_franceconnect.issuer=https://fcp-low.sbx.dev-franceconnect.fr/api/v2}
+      output: false
     ↓Call_Transaction [steps.TransactionStep-1708445274254]: 
       sourceTransaction: lib_FranceConnect.FranceConnect.GetToken
       ↓grant_type [variables.StepVariable-1708445274256]: 
         value: authorization_code
       ↓redirect_uri [variables.StepVariable-1708445274258]: 
-        value: ${lib_franceconnect.redirecturi=https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/getTokenFranceConnect.html}
+        value: ${lib_franceconnect.redirecturi=https://pedro.convertigo.net/convertigo/projects/lib_FranceConnect/DisplayObjects/mobile/}
       ↓client_id [variables.StepVariable-1708445274260]: 
-        value: ${lib_franceconnect.clientid=c2ca3f728e11841accb69191d081801e95be6b153fe0a640a68f4c49d790adeb}
+        value: ${lib_franceconnect.clientid=8ad0b8767c411951b730b545661ca6cdc213e2ed41788141862a76a9224dfe4e}
       ↓client_secret [variables.StepVariable-1708445274262]: 
         sourceDefinition: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
             - com.twinsoft.convertigo.beans.common.XMLVector: 
               - java.lang.String: 
-                - ↑value: 1706637147590
+                - ↑value: 1790354094311
               - java.lang.String: 
-                - ↑value: ./keySecret/text()
+                - ↑value: ./text()
       ↓code [variables.StepVariable-1708445274264]: 
         sourceDefinition: 
           - xmlizable: 
@@ -67,25 +88,135 @@ comment: |
               - java.lang.String: 
                 - ↑value: ./document/object/access_token/text()
       key: oAuthAccessToken
+    ↓clientSecret [steps.SimpleSourceStep-1790354161708]: 
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1790354094311
+            - java.lang.String: 
+              - ↑value: ./text()
+      variableName: clientSecret
+    ↓clientIdJs [steps.SimpleSourceStep-1790356470494]: 
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1790356353712
+            - java.lang.String: 
+              - ↑value: ./text()
+      variableName: fcClientId
+    ↓issuerJs [steps.SimpleSourceStep-1790356470510]: 
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1790356353725
+            - java.lang.String: 
+              - ↑value: ./text()
+      variableName: fcIssuer
+    ↓CallJwks [steps.TransactionStep-1790356353738]: 
+      sourceTransaction: lib_FranceConnect.FranceConnect.GetJwks
+    ↓jwksText [steps.SimpleSourceStep-1790356470527]: 
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1790356353738
+            - java.lang.String: 
+              - ↑value: ./document
+      variableName: fcJwksText
     ↓DecodeJWT [steps.SimpleStep-1706637147629]: 
       expression: |
-        //imports
+        '//imports
         var xmlUtils = use("com.twinsoft.convertigo.engine.util.XMLUtils");
         
-        //code
-        b64 = id_token.split('.')[1];
+        // Validation de l''id_token FranceConnect v2 : signature (ES256/RS256 via JWKS, ou HS256), iss, aud, exp et nonce
+        var decoder = java.util.Base64.getUrlDecoder();
+        var b64uToString = function(s) {
+        	return String(new java.lang.String(decoder.decode(s), "UTF-8"));
+        };
+        var b64uToBigInt = function(s) {
+        	return new java.math.BigInteger(1, decoder.decode(s));
+        };
+        var jwksKeys = JSON.parse(String(fcJwksText)).keys || [];
         
-        jsonData = com.twinsoft.convertigo.engine.util.Base64.decodeToString(b64);
-        log.warn("[FC] JSON Data is" +  jsonData);
+        // Vérifie la signature d''un JWS FranceConnect et retourne son contenu (réutilisé pour userinfo)
+        fcVerifyJws = function(token) {
+        	var parts = String(token).trim().split(''.'');
+        	if (parts.length != 3) {
+        		throw new Error("[FC] JWS invalide");
+        	}
+        	var header = JSON.parse(b64uToString(parts[0]));
+        	var data = new java.lang.String(parts[0] + "." + parts[1]).getBytes("US-ASCII");
+        	var sig = decoder.decode(parts[2]);
+        	var valid = false;
+        	if (header.alg == "HS256") {
+        		var mac = javax.crypto.Mac.getInstance("HmacSHA256");
+        		mac.init(new javax.crypto.spec.SecretKeySpec(new java.lang.String(String(clientSecret)).getBytes("UTF-8"), "HmacSHA256"));
+        		valid = java.security.MessageDigest.isEqual(mac.doFinal(data), sig);
+        	} else if (header.alg == "ES256" || header.alg == "RS256") {
+        		var jwk = null;
+        		for (var i = 0; i < jwksKeys.length && jwk == null; i++) {
+        			var k = jwksKeys[i];
+        			if ((!header.kid || k.kid == header.kid) && (!k.alg || k.alg == header.alg) && (!k.use || k.use == "sig")) {
+        				jwk = k;
+        			}
+        		}
+        		if (jwk == null) {
+        			throw new Error("[FC] clé de signature introuvable : " + header.kid);
+        		}
+        		var publicKey, verifier;
+        		if (header.alg == "RS256") {
+        			publicKey = java.security.KeyFactory.getInstance("RSA").generatePublic(new java.security.spec.RSAPublicKeySpec(b64uToBigInt(jwk.n), b64uToBigInt(jwk.e)));
+        			verifier = java.security.Signature.getInstance("SHA256withRSA");
+        		} else {
+        			var params = java.security.AlgorithmParameters.getInstance("EC");
+        			params.init(new java.security.spec.ECGenParameterSpec("secp256r1"));
+        			var ecSpec = params.getParameterSpec(java.security.spec.ECParameterSpec);
+        			var point = new java.security.spec.ECPoint(b64uToBigInt(jwk.x), b64uToBigInt(jwk.y));
+        			publicKey = java.security.KeyFactory.getInstance("EC").generatePublic(new java.security.spec.ECPublicKeySpec(point, ecSpec));
+        			verifier = java.security.Signature.getInstance("SHA256withECDSAinP1363Format");
+        		}
+        		verifier.initVerify(publicKey);
+        		verifier.update(data);
+        		valid = verifier.verify(sig);
+        	} else {
+        		throw new Error("[FC] algorithme de signature non supporté : " + header.alg);
+        	}
+        	if (!valid) {
+        		throw new Error("[FC] signature invalide");
+        	}
+        	return JSON.parse(b64uToString(parts[1]));
+        };
         
-        // Strange ... DecodeToString seams to miss 2 last chars of 'arm:null}' so we add them
-        db64 = JSON.parse(jsonData + 'l}');
+        db64 = fcVerifyJws(id_token);
+        if (String(db64.iss) != String(fcIssuer)) {
+        	throw new Error("[FC] émetteur de l''id_token invalide : " + db64.iss);
+        }
+        var audOk = Array.isArray(db64.aud) ? db64.aud.indexOf(String(fcClientId)) >= 0 : String(db64.aud) == String(fcClientId);
+        if (!audOk) {
+        	throw new Error("[FC] destinataire de l''id_token invalide");
+        }
+        if (!db64.exp || db64.exp * 1000 < new Date().getTime()) {
+        	throw new Error("[FC] id_token expiré");
+        }
+        var expectedNonce = context.httpSession.getAttribute("fcNonce");
+        context.httpSession.removeAttribute("fcNonce");
+        if (expectedNonce == null || String(db64.nonce) != String(expectedNonce)) {
+        	throw new Error("[FC] nonce invalide");
+        }
+        // id_token conservé en session pour la déconnexion (id_token_hint)
+        context.httpSession.setAttribute("fcIdToken", new java.lang.String(String(id_token)));
         
         // Convert JSON to XML and attach it to main document
         var jsonObject = new org.codehaus.jettison.json.JSONObject(JSON.stringify(db64));
         xmlUtils.jsonToXml(jsonObject, "object", dom.getDocumentElement(), false, true, "item");
-        gid = "fc:" + db64.sub + ":" + db64.email;
-        
+        gid = "fc:" + db64.sub;'
     ↓Set_authenticated_user [steps.SetAuthenticatedUserStep-1706637147632]: 
       userid: 
         - xmlizable: 
@@ -135,7 +266,7 @@ comment: |
                 - ↑value: 1708450313454
               - java.lang.String: 
                 - ↑value: ./text()
-    ↓Copy [steps.XMLCopyStep-1708598257098]: 
+    ↓userInfoJwt [steps.SimpleSourceStep-1790356470549]: 
       sourceDefinition: 
         - xmlizable: 
           - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
@@ -143,17 +274,29 @@ comment: |
             - java.lang.String: 
               - ↑value: 1708450235390
             - java.lang.String: 
-              - ↑value: ./document/object/*
-    ↓userInfo [steps.JsonSourceStep-1708600186024]: 
-      sourceDefinition: 
+              - ↑value: ./document
+      variableName: userInfoJwt
+    ↓VerifyUserInfo [steps.SimpleStep-1790356470561]: 
+      expression: |
+        '// userinfo FranceConnect v2 : JWS signé, vérifié avant usage
+        userInfo = fcVerifyJws(String(userInfoJwt).trim());
+        if (String(userInfo.sub) != String(db64.sub)) {
+        	throw new Error("[FC] sub userinfo incohérent avec l''id_token");
+        }'
+    ↓fcConnectedInfo [steps.JsonToXmlStep-1790357457978]: 
+      comment: Toutes les claims userinfo vérifiées (dépend des scopes demandés), même format que checkAccessOpenID
+      jsonObject: 
         - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
-          - com.twinsoft.convertigo.beans.common.XMLVector: 
-            - java.lang.String: 
-              - ↑value: 1708450235390
-            - java.lang.String: 
-              - ↑value: ./document/object
-      variableName: userInfo
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: JS
+            - →→: userInfo
+      key: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: fcConnectedInfo
     ↓SetUserInfoInSesson [steps.SessionSetObjectStep-1708600108332]: 
       key: fcConnectedInfo
       value: 
@@ -171,5 +314,5 @@ comment: |
             - ↑mode: PLAIN
             - →→: No Autorization code found
 ↓code [variables.RequestableVariable-1706637147653]: 
-↓keySecret [variables.RequestableVariable-1706637147656]: 
-  value: ${lib_franceconnect.clientsecret.secret=6ceb140618b848e1ec51f55407192f729ac733976c1cc8f5fabaf6393f731422}
+↓state [variables.RequestableVariable-1790354094261]: 
+  comment: state OIDC renvoyé par FranceConnect, comparé à la valeur en session
