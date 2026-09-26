@@ -104,7 +104,7 @@ Any failed check stops the sequence with an explicit error message prefixed by `
 
 # Globals
 
-After a successful login, `fcConnectedInfo` (on `router.sharedObject`) holds **all the claims returned by the FranceConnect userinfo endpoint**, once the signature is verified. The same object is returned by `loginWithCode` and `checkAccessOpenID`, and it is kept in the HTTP session.
+After a successful login, `fcConnectedInfo` (on `router.sharedObject`) holds **all** the claims returned by the FranceConnect userinfo endpoint**, once the signature is verified. The same object is returned by `loginWithCode` and `checkAccessOpenID`, and it is kept in the HTTP session.
 
 The available fields depend on `lib_franceconnect.scopes`:
 
@@ -134,9 +134,36 @@ When no user is connected, `fcConnectedInfo` is **null**. On the server, the aut
 
 For more technical informations : [documentation](./project.md)
 
+- [Installation](#installation)
 - [Mobile Library](#mobile-library)
     - [Shared Components](#shared-components)
         - [FranceConnect](#franceconnect)
+
+
+## Installation
+
+1. In your Convertigo Studio click on ![](https://github.com/convertigo/convertigo/blob/develop/eclipse-plugin-studio/icons/studio/project_import.gif?raw=true "Import a project in treeview") to import a project in the treeview
+2. In the import wizard
+
+   ![](https://github.com/convertigo/convertigo/blob/develop/eclipse-plugin-studio/tomcat/webapps/convertigo/templates/ftl/project_import_wzd.png?raw=true "Import Project")
+   
+   paste the text below into the `Project remote URL` field:
+   <table>
+     <tr><td>Usage</td><td>Click the copy button at the end of the line</td></tr>
+     <tr><td>To contribute</td><td>
+
+     ```
+     lib_FranceConnect=https://github.com/convertigo/c8oprj-lib-franceconnect.git:branch=master
+     ```
+     </td></tr>
+     <tr><td>To simply use</td><td>
+
+     ```
+     lib_FranceConnect=https://github.com/convertigo/c8oprj-lib-franceconnect/archive/master.zip
+     ```
+     </td></tr>
+    </table>
+3. Click the `Finish` button. This will automatically import the __lib_FranceConnect__ project
 
 
 ## Mobile Library

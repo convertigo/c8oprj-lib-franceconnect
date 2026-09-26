@@ -85,408 +85,414 @@ title: First page
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:3. Une fois connecté, la carte Bienvenue affiche vos nom et prénom fournis par FranceConnect, avec le bouton Déconnexion.
-  ↓ConfigCard [ngx.components.UIDynamicElement-1790405270399]: 
-    beanData: '{"ionBean":"Card"}'
-    tagName: ion-card
-    ↓ConfigTitle [ngx.components.UIDynamicElement-1790405274765]: 
-      beanData: '{"ionBean":"CardTitle"}'
-      tagName: ion-card-title
-      ↓ConfigTitleText [ngx.components.UIText-1790405274767]: 
-        textValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: plain:Configuration du portail partenaire
-    ↓PortalLink [ngx.components.UIElement-1790405597840]: 
-      tagName: a
-      ↓PortalLinkText [ngx.components.UIText-1790405598414]: 
-        textValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: plain:Ouvrir l’espace partenaire →
-      ↓PortalHref [ngx.components.UIAttribute-1790405602489]: 
-        attrName: href
-        attrValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: plain:https://espace.partenaires.franceconnect.gouv.fr/
-      ↓PortalTarget [ngx.components.UIAttribute-1790405606755]: 
-        attrName: target
-        attrValue: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: plain:_blank
-      ↓PortalLinkStyle [ngx.components.UIStyle-1790405611638]: 
-        styleContent: 
-          - xmlizable: 
-            - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-            - com.twinsoft.convertigo.beans.common.FormatedContent: 
-              →: |
-                '	color: #000091;
-                	text-decoration: underline;
-                	font-size: 14px;
-                	font-weight: 600;
-                	display: inline-block;
-                	margin: 4px 0 12px 20px;
-                '
-    ↓ConfigContent [ngx.components.UIDynamicElement-1790405284299]: 
-      beanData: '{"ionBean":"CardContent"}'
-      tagName: ion-card-content
-      ↓IntroDiv [ngx.components.UIDynamicElement-1790405288418]: 
-        beanData: '{"ionBean":"DivTag"}'
-        tagName: div
-        ↓IntroText [ngx.components.UIText-1790405288420]: 
+  ↓IfNotConnected [ngx.components.UIControlDirective-1790407164347]: 
+    directiveName: If
+    directiveSource: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: script:router.sharedObject?.fcConnectedInfo == null
+    ↓ConfigCard [ngx.components.UIDynamicElement-1790405270399]: 
+      beanData: '{"ionBean":"Card"}'
+      tagName: ion-card
+      ↓ConfigTitle [ngx.components.UIDynamicElement-1790405274765]: 
+        beanData: '{"ionBean":"CardTitle"}'
+        tagName: ion-card-title
+        ↓ConfigTitleText [ngx.components.UIText-1790405274767]: 
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: plain:Valeurs à déclarer dans l’espace partenaire FranceConnect (une instance par environnement) :
-      ↓LoginUrlDiv [ngx.components.UIDynamicElement-1790405294021]: 
-        beanData: '{"ionBean":"DivTag"}'
-        tagName: div
-        ↓LoginUrlLabel [ngx.components.UIText-1790405294023]: 
+              - MobileSmartSourceType: plain:Configuration du portail partenaire
+      ↓PortalLink [ngx.components.UIElement-1790405597840]: 
+        tagName: a
+        ↓PortalLinkText [ngx.components.UIText-1790405598414]: 
           textValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: 'plain:Login redirect URL : '
-        ↓LoginUrlValue [ngx.components.UIText-1790405294025]: 
-          textValue: 
+              - MobileSmartSourceType: plain:Ouvrir l’espace partenaire →
+        ↓PortalHref [ngx.components.UIAttribute-1790405602489]: 
+          attrName: href
+          attrValue: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:router.sharedObject?.fcConfig?.RedirectURI
-        ↓RowStyle [ngx.components.UIStyle-1790405624267]: 
+              - MobileSmartSourceType: plain:https://espace.partenaires.franceconnect.gouv.fr/
+        ↓PortalTarget [ngx.components.UIAttribute-1790405606755]: 
+          attrName: target
+          attrValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: plain:_blank
+        ↓PortalLinkStyle [ngx.components.UIStyle-1790405611638]: 
           styleContent: 
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
               - com.twinsoft.convertigo.beans.common.FormatedContent: 
                 →: |
-                  '	padding: 10px 12px;
-                  	background: #f5f7fb;
-                  	border-left: 3px solid #1b5c9e;
-                  	border-radius: 6px;
+                  '	color: #000091;
+                  	text-decoration: underline;
+                  	font-size: 14px;
+                  	font-weight: 600;
+                  	display: inline-block;
+                  	margin: 4px 0 12px 20px;
                   '
-      ↓ScopesDiv [ngx.components.UIDynamicElement-1790405298810]: 
-        beanData: '{"ionBean":"DivTag"}'
-        tagName: div
-        ↓ScopesLabel [ngx.components.UIText-1790405298812]: 
-          textValue: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: 'plain:Scopes : '
-        ↓ScopesValue [ngx.components.UIText-1790405298814]: 
-          textValue: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:router.sharedObject?.fcConfig?.Scopes
-        ↓RowStyle [ngx.components.UIStyle-1790405629120]: 
-          styleContent: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-              - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                →: |
-                  '	padding: 10px 12px;
-                  	background: #f5f7fb;
-                  	border-left: 3px solid #1b5c9e;
-                  	border-radius: 6px;
-                  '
-      ↓AuthorizeDiv [ngx.components.UIDynamicElement-1790405304774]: 
-        beanData: '{"ionBean":"DivTag"}'
-        tagName: div
-        ↓AuthorizeLabel [ngx.components.UIText-1790405304776]: 
-          textValue: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: 'plain:Endpoint autorisation : '
-        ↓AuthorizeValue [ngx.components.UIText-1790405304778]: 
-          textValue: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:router.sharedObject?.fcConfig?.AuthorizeEndPoint
-        ↓RowStyle [ngx.components.UIStyle-1790405634175]: 
-          styleContent: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-              - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                →: |
-                  '	padding: 10px 12px;
-                  	background: #f5f7fb;
-                  	border-left: 3px solid #1b5c9e;
-                  	border-radius: 6px;
-                  '
-      ↓ClientIDDiv [ngx.components.UIDynamicElement-1790405308868]: 
-        beanData: '{"ionBean":"DivTag"}'
-        tagName: div
-        ↓ClientIDLabel [ngx.components.UIText-1790405308870]: 
-          textValue: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: 'plain:Identifiant client : '
-        ↓ClientIDValue [ngx.components.UIText-1790405308872]: 
-          textValue: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: script:router.sharedObject?.fcConfig?.OpenIDClientID
-        ↓RowStyle [ngx.components.UIStyle-1790405638761]: 
-          styleContent: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-              - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                →: |
-                  '	padding: 10px 12px;
-                  	background: #f5f7fb;
-                  	border-left: 3px solid #1b5c9e;
-                  	border-radius: 6px;
-                  '
-      ↓SymbolsIntroDiv [ngx.components.UIDynamicElement-1790405653598]: 
-        beanData: '{"ionBean":"DivTag"}'
-        tagName: div
-        ↓SymbolsIntroText [ngx.components.UIText-1790405653600]: 
-          textValue: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-              - MobileSmartSourceType: plain:Symboles à surcharger dans la console d’administration (Administration Console → Symbols), par environnement :
-        ↓SymbolsIntroStyle [ngx.components.UIStyle-1790405663962]: 
-          styleContent: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-              - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                →: |
-                  '	font-weight: 700;
-                  	color: #163e77;
-                  	margin-top: 16px;
-                  '
-      ↓SymbolsGrid [ngx.components.UIDynamicElement-1790406103204]: 
-        beanData: '{"ionBean":"Grid"}'
-        tagName: ion-grid
-        ↓SymbolsGridStyle [ngx.components.UIStyle-1790406103206]: 
-          styleContent: 
-            - xmlizable: 
-              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
-              - com.twinsoft.convertigo.beans.common.FormatedContent: 
-                →: |
-                  '	margin-top: 10px;
-                  	padding: 0;
-                  	font-size: 13px;
-                  '
-        ↓HeaderRow [ngx.components.UIDynamicElement-1790406125413]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓HeaderSymbolCol [ngx.components.UIDynamicElement-1790406125415]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓HeaderSymbolText [ngx.components.UIText-1790406125417]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Symbole
-          ↓HeaderRoleCol [ngx.components.UIDynamicElement-1790406125419]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓HeaderRoleText [ngx.components.UIText-1790406125421]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Rôle
-          ↓HeaderRowStyle [ngx.components.UIStyle-1790406134841]: 
+      ↓ConfigContent [ngx.components.UIDynamicElement-1790405284299]: 
+        beanData: '{"ionBean":"CardContent"}'
+        tagName: ion-card-content
+        ↓IntroDiv [ngx.components.UIDynamicElement-1790405288418]: 
+          beanData: '{"ionBean":"DivTag"}'
+          tagName: div
+          ↓IntroText [ngx.components.UIText-1790405288420]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Valeurs à déclarer dans l’espace partenaire FranceConnect (une instance par environnement) :
+        ↓LoginUrlDiv [ngx.components.UIDynamicElement-1790405294021]: 
+          beanData: '{"ionBean":"DivTag"}'
+          tagName: div
+          ↓LoginUrlLabel [ngx.components.UIText-1790405294023]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'plain:Login redirect URL : '
+          ↓LoginUrlValue [ngx.components.UIText-1790405294025]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:router.sharedObject?.fcConfig?.RedirectURI
+          ↓RowStyle [ngx.components.UIStyle-1790405624267]: 
             styleContent: 
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
                 - com.twinsoft.convertigo.beans.common.FormatedContent: 
                   →: |
-                    '	background-color: #163e77;
-                    	color: #ffffff;
-                    	font-weight: 600;
-                    	padding: 6px 10px;
-                    	border-radius: 6px 6px 0 0;
+                    '	padding: 10px 12px;
+                    	background: #f5f7fb;
+                    	border-left: 3px solid #1b5c9e;
+                    	border-radius: 6px;
                     '
-        ↓RowClientid [ngx.components.UIDynamicElement-1790406143317]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymClientidCol [ngx.components.UIDynamicElement-1790406143319]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymClientidText [ngx.components.UIText-1790406143321]: 
-              textValue: 
+        ↓ScopesDiv [ngx.components.UIDynamicElement-1790405298810]: 
+          beanData: '{"ionBean":"DivTag"}'
+          tagName: div
+          ↓ScopesLabel [ngx.components.UIText-1790405298812]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'plain:Scopes : '
+          ↓ScopesValue [ngx.components.UIText-1790405298814]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:router.sharedObject?.fcConfig?.Scopes
+          ↓RowStyle [ngx.components.UIStyle-1790405629120]: 
+            styleContent: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '	padding: 10px 12px;
+                    	background: #f5f7fb;
+                    	border-left: 3px solid #1b5c9e;
+                    	border-radius: 6px;
+                    '
+        ↓AuthorizeDiv [ngx.components.UIDynamicElement-1790405304774]: 
+          beanData: '{"ionBean":"DivTag"}'
+          tagName: div
+          ↓AuthorizeLabel [ngx.components.UIText-1790405304776]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'plain:Endpoint autorisation : '
+          ↓AuthorizeValue [ngx.components.UIText-1790405304778]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:router.sharedObject?.fcConfig?.AuthorizeEndPoint
+          ↓RowStyle [ngx.components.UIStyle-1790405634175]: 
+            styleContent: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '	padding: 10px 12px;
+                    	background: #f5f7fb;
+                    	border-left: 3px solid #1b5c9e;
+                    	border-radius: 6px;
+                    '
+        ↓ClientIDDiv [ngx.components.UIDynamicElement-1790405308868]: 
+          beanData: '{"ionBean":"DivTag"}'
+          tagName: div
+          ↓ClientIDLabel [ngx.components.UIText-1790405308870]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'plain:Identifiant client : '
+          ↓ClientIDValue [ngx.components.UIText-1790405308872]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:router.sharedObject?.fcConfig?.OpenIDClientID
+          ↓RowStyle [ngx.components.UIStyle-1790405638761]: 
+            styleContent: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '	padding: 10px 12px;
+                    	background: #f5f7fb;
+                    	border-left: 3px solid #1b5c9e;
+                    	border-radius: 6px;
+                    '
+        ↓SymbolsIntroDiv [ngx.components.UIDynamicElement-1790405653598]: 
+          beanData: '{"ionBean":"DivTag"}'
+          tagName: div
+          ↓SymbolsIntroText [ngx.components.UIText-1790405653600]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Symboles à surcharger dans la console d’administration (Administration Console → Symbols), par environnement :
+          ↓SymbolsIntroStyle [ngx.components.UIStyle-1790405663962]: 
+            styleContent: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '	font-weight: 700;
+                    	color: #163e77;
+                    	margin-top: 16px;
+                    '
+        ↓SymbolsGrid [ngx.components.UIDynamicElement-1790406103204]: 
+          beanData: '{"ionBean":"Grid"}'
+          tagName: ion-grid
+          ↓SymbolsGridStyle [ngx.components.UIStyle-1790406103206]: 
+            styleContent: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '	margin-top: 10px;
+                    	padding: 0;
+                    	font-size: 13px;
+                    '
+          ↓HeaderRow [ngx.components.UIDynamicElement-1790406125413]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓HeaderSymbolCol [ngx.components.UIDynamicElement-1790406125415]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓HeaderSymbolText [ngx.components.UIText-1790406125417]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:Symbole
+            ↓HeaderRoleCol [ngx.components.UIDynamicElement-1790406125419]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓HeaderRoleText [ngx.components.UIText-1790406125421]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:Rôle
+            ↓HeaderRowStyle [ngx.components.UIStyle-1790406134841]: 
+              styleContent: 
                 - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_franceconnect.clientid
-          ↓RoleClientidCol [ngx.components.UIDynamicElement-1790406143323]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleClientidText [ngx.components.UIText-1790406143325]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Identifiant client de l'instance FranceConnect
-        ↓RowSecret [ngx.components.UIDynamicElement-1790406148742]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymSecretCol [ngx.components.UIDynamicElement-1790406148744]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymSecretText [ngx.components.UIText-1790406148746]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_FranceConnect.client_secret
-          ↓RoleSecretCol [ngx.components.UIDynamicElement-1790406148748]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleSecretText [ngx.components.UIText-1790406148750]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Secret client de l'instance (côté serveur uniquement)
-        ↓RowScopes [ngx.components.UIDynamicElement-1790406152553]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymScopesCol [ngx.components.UIDynamicElement-1790406152555]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymScopesText [ngx.components.UIText-1790406152557]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_franceconnect.scopes
-          ↓RoleScopesCol [ngx.components.UIDynamicElement-1790406152559]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleScopesText [ngx.components.UIText-1790406152561]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Scopes demandés à FranceConnect (doit contenir openid)
-        ↓RowAuthorize [ngx.components.UIDynamicElement-1790406156686]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymAuthorizeCol [ngx.components.UIDynamicElement-1790406156688]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymAuthorizeText [ngx.components.UIText-1790406156690]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_franceconnect.authorize
-          ↓RoleAuthorizeCol [ngx.components.UIDynamicElement-1790406156692]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleAuthorizeText [ngx.components.UIText-1790406156694]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:URL d'autorisation FranceConnect
-        ↓RowIssuer [ngx.components.UIDynamicElement-1790406161004]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymIssuerCol [ngx.components.UIDynamicElement-1790406161006]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymIssuerText [ngx.components.UIText-1790406161008]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_franceconnect.issuer
-          ↓RoleIssuerCol [ngx.components.UIDynamicElement-1790406161010]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleIssuerText [ngx.components.UIText-1790406161012]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Émetteur FranceConnect (issuer des jetons)
-        ↓RowToken [ngx.components.UIDynamicElement-1790406164760]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymTokenCol [ngx.components.UIDynamicElement-1790406164762]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymTokenText [ngx.components.UIText-1790406164764]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_franceconnect.tokenendpoint
-          ↓RoleTokenCol [ngx.components.UIDynamicElement-1790406164766]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleTokenText [ngx.components.UIText-1790406164768]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Endpoint de récupération du jeton (token endpoint)
-        ↓RowEndSession [ngx.components.UIDynamicElement-1790406169557]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymEndSessionCol [ngx.components.UIDynamicElement-1790406169559]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymEndSessionText [ngx.components.UIText-1790406169561]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_franceconnect.endsession
-          ↓RoleEndSessionCol [ngx.components.UIDynamicElement-1790406169563]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleEndSessionText [ngx.components.UIText-1790406169565]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:URL de déconnexion FranceConnect (end session)
-        ↓RowRedirect [ngx.components.UIDynamicElement-1790406174057]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymRedirectCol [ngx.components.UIDynamicElement-1790406174059]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymRedirectText [ngx.components.UIText-1790406174061]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_franceconnect.redirecturi
-          ↓RoleRedirectCol [ngx.components.UIDynamicElement-1790406174063]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleRedirectText [ngx.components.UIText-1790406174065]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:URL de retour après connexion, à déclarer au portail partenaire
-        ↓RowPostLogout [ngx.components.UIDynamicElement-1790406178453]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymPostLogoutCol [ngx.components.UIDynamicElement-1790406178455]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymPostLogoutText [ngx.components.UIText-1790406178457]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_franceconnect.postlogouturi
-          ↓RolePostLogoutCol [ngx.components.UIDynamicElement-1790406178459]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RolePostLogoutText [ngx.components.UIText-1790406178461]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:URL de retour après déconnexion, à déclarer au portail partenaire
-        ↓RowCors [ngx.components.UIDynamicElement-1790406182757]: 
-          beanData: '{"ionBean":"GridRow"}'
-          tagName: ion-row
-          ↓SymCorsCol [ngx.components.UIDynamicElement-1790406182759]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓SymCorsText [ngx.components.UIText-1790406182761]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:lib_FranceConnect.corsOrigin
-          ↓RoleCorsCol [ngx.components.UIDynamicElement-1790406182763]: 
-            beanData: '{"ionBean":"GridCol"}'
-            tagName: ion-col
-            ↓RoleCorsText [ngx.components.UIText-1790406182765]: 
-              textValue: 
-                - xmlizable: 
-                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-                  - MobileSmartSourceType: plain:Origine autorisée pour les appels navigateur (CORS)
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '	background-color: #163e77;
+                      	color: #ffffff;
+                      	font-weight: 600;
+                      	padding: 6px 10px;
+                      	border-radius: 6px 6px 0 0;
+                      '
+          ↓RowClientid [ngx.components.UIDynamicElement-1790406143317]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymClientidCol [ngx.components.UIDynamicElement-1790406143319]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymClientidText [ngx.components.UIText-1790406143321]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_franceconnect.clientid
+            ↓RoleClientidCol [ngx.components.UIDynamicElement-1790406143323]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleClientidText [ngx.components.UIText-1790406143325]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:Identifiant client de l'instance FranceConnect
+          ↓RowSecret [ngx.components.UIDynamicElement-1790406148742]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymSecretCol [ngx.components.UIDynamicElement-1790406148744]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymSecretText [ngx.components.UIText-1790406148746]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_FranceConnect.client_secret
+            ↓RoleSecretCol [ngx.components.UIDynamicElement-1790406148748]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleSecretText [ngx.components.UIText-1790406148750]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:Secret client de l'instance (côté serveur uniquement)
+          ↓RowScopes [ngx.components.UIDynamicElement-1790406152553]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymScopesCol [ngx.components.UIDynamicElement-1790406152555]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymScopesText [ngx.components.UIText-1790406152557]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_franceconnect.scopes
+            ↓RoleScopesCol [ngx.components.UIDynamicElement-1790406152559]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleScopesText [ngx.components.UIText-1790406152561]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:Scopes demandés à FranceConnect (doit contenir openid)
+          ↓RowAuthorize [ngx.components.UIDynamicElement-1790406156686]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymAuthorizeCol [ngx.components.UIDynamicElement-1790406156688]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymAuthorizeText [ngx.components.UIText-1790406156690]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_franceconnect.authorize
+            ↓RoleAuthorizeCol [ngx.components.UIDynamicElement-1790406156692]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleAuthorizeText [ngx.components.UIText-1790406156694]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:URL d'autorisation FranceConnect
+          ↓RowIssuer [ngx.components.UIDynamicElement-1790406161004]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymIssuerCol [ngx.components.UIDynamicElement-1790406161006]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymIssuerText [ngx.components.UIText-1790406161008]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_franceconnect.issuer
+            ↓RoleIssuerCol [ngx.components.UIDynamicElement-1790406161010]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleIssuerText [ngx.components.UIText-1790406161012]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:Émetteur FranceConnect (issuer des jetons)
+          ↓RowToken [ngx.components.UIDynamicElement-1790406164760]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymTokenCol [ngx.components.UIDynamicElement-1790406164762]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymTokenText [ngx.components.UIText-1790406164764]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_franceconnect.tokenendpoint
+            ↓RoleTokenCol [ngx.components.UIDynamicElement-1790406164766]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleTokenText [ngx.components.UIText-1790406164768]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:Endpoint de récupération du jeton (token endpoint)
+          ↓RowEndSession [ngx.components.UIDynamicElement-1790406169557]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymEndSessionCol [ngx.components.UIDynamicElement-1790406169559]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymEndSessionText [ngx.components.UIText-1790406169561]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_franceconnect.endsession
+            ↓RoleEndSessionCol [ngx.components.UIDynamicElement-1790406169563]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleEndSessionText [ngx.components.UIText-1790406169565]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:URL de déconnexion FranceConnect (end session)
+          ↓RowRedirect [ngx.components.UIDynamicElement-1790406174057]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymRedirectCol [ngx.components.UIDynamicElement-1790406174059]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymRedirectText [ngx.components.UIText-1790406174061]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_franceconnect.redirecturi
+            ↓RoleRedirectCol [ngx.components.UIDynamicElement-1790406174063]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleRedirectText [ngx.components.UIText-1790406174065]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:URL de retour après connexion, à déclarer au portail partenaire
+          ↓RowPostLogout [ngx.components.UIDynamicElement-1790406178453]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymPostLogoutCol [ngx.components.UIDynamicElement-1790406178455]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymPostLogoutText [ngx.components.UIText-1790406178457]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_franceconnect.postlogouturi
+            ↓RolePostLogoutCol [ngx.components.UIDynamicElement-1790406178459]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RolePostLogoutText [ngx.components.UIText-1790406178461]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:URL de retour après déconnexion, à déclarer au portail partenaire
+          ↓RowCors [ngx.components.UIDynamicElement-1790406182757]: 
+            beanData: '{"ionBean":"GridRow"}'
+            tagName: ion-row
+            ↓SymCorsCol [ngx.components.UIDynamicElement-1790406182759]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓SymCorsText [ngx.components.UIText-1790406182761]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:lib_FranceConnect.corsOrigin
+            ↓RoleCorsCol [ngx.components.UIDynamicElement-1790406182763]: 
+              beanData: '{"ionBean":"GridCol"}'
+              tagName: ion-col
+              ↓RoleCorsText [ngx.components.UIText-1790406182765]: 
+                textValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: plain:Origine autorisée pour les appels navigateur (CORS)
   ↓tag1 [ngx.components.UIControlDirective-1708599316539]: 
     directiveName: If
     directiveSource: 
@@ -569,6 +575,19 @@ title: First page
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:Vous êtes connecté via FranceConnect.
+        ↓SubInfoDiv [ngx.components.UIDynamicElement-1790407189421]: 
+          beanData: '{"ionBean":"DivTag"}'
+          tagName: div
+          ↓subLabel [ngx.components.UIText-1790407189423]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: 'plain:Identifiant technique (sub) : '
+          ↓subValue [ngx.components.UIText-1790407189425]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: script:router.sharedObject?.fcConnectedInfo?.sub
 ↓PageStyle [ngx.components.UIStyle-1790403804578]: 
   styleContent: 
     - xmlizable: 

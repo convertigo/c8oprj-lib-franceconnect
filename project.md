@@ -102,7 +102,7 @@ Any failed check stops the sequence with an explicit error message prefixed by `
 
 # Globals
 
-After a successful login, `fcConnectedInfo` (on `router.sharedObject`) holds **all the claims returned by the FranceConnect userinfo endpoint**, once the signature is verified. The same object is returned by `loginWithCode` and `checkAccessOpenID`, and it is kept in the HTTP session.
+After a successful login, `fcConnectedInfo` (on `router.sharedObject`) holds **all** the claims returned by the FranceConnect userinfo endpoint**, once the signature is verified. The same object is returned by `loginWithCode` and `checkAccessOpenID`, and it is kept in the HTTP session.
 
 The available fields depend on `lib_franceconnect.scopes`:
 

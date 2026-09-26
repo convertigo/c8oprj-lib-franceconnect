@@ -14,7 +14,9 @@ comment: Returns to the client the public OAuth credentials
   nodeText: ${lib_franceconnect.scopes=openid family_name given_name}
 ↓GenerateStateNonce [steps.SimpleStep-1790354094324]: 
   expression: |
-    '// state et nonce OIDC générés côté serveur (aléa cryptographique, 32 caractères minimum en v2) et gardés en session
+    '// state et nonce OIDC générés côté serveur (aléa cryptographique, 32 caractères minimum en v2) et gardés en session.
+    // Réutilisé tel quel s''il existe déjà : un appel concurrent (rechargement de la carte de configuration
+    // pendant un flux de login en cours) ne doit pas invalider le state/nonce attendu par loginWithCode.
     var sr = new java.security.SecureRandom();
     var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     var rnd = function(n) {
@@ -24,10 +26,16 @@ comment: Returns to the client the public OAuth credentials
     	}
     	return s;
     };
-    fcState = rnd(43);
-    fcNonce = rnd(43);
-    context.httpSession.setAttribute("fcState", new java.lang.String(fcState));
-    context.httpSession.setAttribute("fcNonce", new java.lang.String(fcNonce));'
+    fcState = context.httpSession.getAttribute("fcState");
+    fcNonce = context.httpSession.getAttribute("fcNonce");
+    if (fcState == null || String(fcState).length < 32) {
+    	fcState = rnd(43);
+    	context.httpSession.setAttribute("fcState", new java.lang.String(fcState));
+    }
+    if (fcNonce == null || String(fcNonce).length < 32) {
+    	fcNonce = rnd(43);
+    	context.httpSession.setAttribute("fcNonce", new java.lang.String(fcNonce));
+    }'
 ↓State [steps.ElementStep-1790354094337]: 
   expression: fcState
   nodeName: State

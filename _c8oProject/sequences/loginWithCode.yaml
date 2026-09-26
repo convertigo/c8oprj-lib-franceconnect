@@ -76,18 +76,6 @@ comment: |
             - java.lang.String: 
               - ↑value: ./document/object/id_token/text()
       variableName: id_token
-    ↓SetOAuthTokenInSession [steps.SessionSetStep-1706637147626]: 
-      expression: 
-        - xmlizable: 
-          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
-          - SmartType: 
-            - ↑mode: SOURCE
-            - com.twinsoft.convertigo.beans.common.XMLVector: 
-              - java.lang.String: 
-                - ↑value: 1708445274254
-              - java.lang.String: 
-                - ↑value: ./document/object/access_token/text()
-      key: oAuthAccessToken
     ↓clientSecret [steps.SimpleSourceStep-1790354161708]: 
       sourceDefinition: 
         - xmlizable: 
@@ -305,6 +293,18 @@ comment: |
           - SmartType: 
             - ↑mode: JS
             - →→: userInfo
+    ↓SetOAuthTokenInSession [steps.SessionSetStep-1706637147626]: 
+      expression: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: SOURCE
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: 1708445274254
+              - java.lang.String: 
+                - ↑value: ./document/object/access_token/text()
+      key: oAuthAccessToken
   ↓jElse [steps.ElseStep-1706637147647]: 
     ↓Error_structure [steps.XMLErrorStep-1708445445082]: 
       message: 

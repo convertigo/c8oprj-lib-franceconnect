@@ -28,6 +28,14 @@ comment: |
             - ↑value: 1706636768983
           - java.lang.String: 
             - ↑value: ./expression/text()
+  ↓GuardUserInfo [steps.SimpleStep-1790411683624]: 
+    expression: |
+      '// Garde-fou : un token OAuth sans fcConnectedInfo en session (login avorté, session expirée)
+      // ferait crasher le JsonToXml aval (elt null). On nettoie le token pour forcer un nouveau login propre.
+      if (context.httpSession.getAttribute("fcConnectedInfo") == null) {
+      	context.httpSession.removeAttribute("oAuthAccessToken");
+      	throw new Error("[FC] token present mais fcConnectedInfo absent : session nettoyee, reauthentification requise");
+      }'
   ↓GetConnectedInfo [steps.SessionGetObjectStep-1708600369733]: 
     key: fcConnectedInfo
     output: false

@@ -129,7 +129,7 @@
     - Changing `lib_franceconnect.scopes` requires no code change. Claims are returned as sent by FranceConnect: nested claims stay objects, and every value is verified but not transformed.
     '
   corsOrigin: ${lib_FranceConnect.corsOrigin=https://pedro.convertigo.net}
-  version: 1.0
+  version: 2.0
   ↓FranceConnect [connectors.HttpConnector]: 🗏 connectors/FranceConnect.yaml
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
   ↓checkAccessOpenID [sequences.GenericSequence]: 🗏 sequences/checkAccessOpenID.yaml
