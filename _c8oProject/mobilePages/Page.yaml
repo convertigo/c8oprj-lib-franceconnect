@@ -562,6 +562,11 @@ title: First page
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: script:router.sharedObject?.fcConnectedInfo?.given_name
+        ↓nameSpace [ngx.components.UIText-1790411907305]: 
+          textValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+              - MobileSmartSourceType: 'plain: '
         ↓familyName [ngx.components.UIText-1790403948271]: 
           textValue: 
             - xmlizable: 
@@ -588,6 +593,12 @@ title: First page
               - xmlizable: 
                 - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
                 - MobileSmartSourceType: script:router.sharedObject?.fcConnectedInfo?.sub
+          ↓at_SubClass [ngx.components.UIAttribute-1790411970904]: 
+            attrName: class
+            attrValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:fc-sub-info
 ↓PageStyle [ngx.components.UIStyle-1790403804578]: 
   styleContent: 
     - xmlizable: 
@@ -702,6 +713,18 @@ title: First page
             --background-hover: #1a4785;
             --color: #ffffff;
             margin-top: 16px;
+          }
+          
+          /* Carte Bienvenue : titre avec prénom et nom espacés, valeurs mises en évidence */
+          ion-content ion-card ion-card-title span {
+            display: inline;
+          }
+          
+          ion-content ion-card ion-card-content div.fc-sub-info {
+            padding: 10px 12px;
+            background: #f5f7fb;
+            border-left: 3px solid #1b5c9e;
+            border-radius: 6px;
           }
           
           ion-content ion-card ion-grid {
