@@ -1,6 +1,8 @@
 
 # ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/core/images/project_color_16x16.png?raw=true "Project") lib_FranceConnect
 
+# ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/core/images/project_color_16x16.png?raw=true "Project") lib_FranceConnect
+
 # lib_FranceConnect
 
 Convertigo library implementing **FranceConnect v2** (OpenID Connect, authorization code flow) for Convertigo NGX applications.

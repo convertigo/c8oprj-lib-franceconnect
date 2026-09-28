@@ -1,8 +1,7 @@
-↑convertigo: 8.4.0.m006
+↑convertigo: 8.3.0.m006
 ↓lib_FranceConnect [core.Project]: 
   comment: |
-    '
-    # ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/core/images/project_color_16x16.png?raw=true "Project") lib_FranceConnect
+    '# ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/core/images/project_color_16x16.png?raw=true "Project") lib_FranceConnect
     
     # lib_FranceConnect
     
@@ -132,18 +131,15 @@
     - Changing `lib_franceconnect.scopes` requires no code change. Claims are returned as sent by FranceConnect: nested claims stay objects, and every value is verified but not transformed.
     '
   corsOrigin: ${lib_FranceConnect.corsOrigin=https://pedro.convertigo.net}
-  version: 2.0.3
+  version: 2.0.4
   ↓FranceConnect [connectors.HttpConnector]: 🗏 connectors/FranceConnect.yaml
   ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
   ↓checkAccessOpenID [sequences.GenericSequence]: 🗏 sequences/checkAccessOpenID.yaml
   ↓getConfiguration [sequences.GenericSequence]: 🗏 sequences/getConfiguration.yaml
   ↓loginWithCode [sequences.GenericSequence]: 🗏 sequences/loginWithCode.yaml
   ↓Logout [sequences.GenericSequence]: 🗏 sequences/Logout.yaml
-  ↓project [references.ProjectSchemaReference]: 
-    projectName: mobilebuilder_tpl_8_4_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_4_0_ngx.zip
-  ↓Project_reference [references.ProjectSchemaReference]: 
-    comment: ngx builder template
-    projectName: mobilebuilder_tpl_8_1_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_1_0_ngx.zip
+  ↓project1 [references.ProjectSchemaReference]: 
+    projectName: mobilebuilder_tpl_8_3_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_3_0_ngx.zip
   ↓Application [core.MobileApplication]: 
     comment: Describes the mobile application global properties
     endpoint: https://pedro.convertigo.net/convertigo
